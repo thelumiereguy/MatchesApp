@@ -1,0 +1,6 @@
+ext {
+
+
+    navigationLibVersion = "2.2.0-alpha01"
+
+}

@@ -1,0 +1,73 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorOnSecondary">@color/colorWhite</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_logo</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+
+    <style name="montserrat_regular_font">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="montserrat_bold_font">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="montserrat_light_font">
+        <item name="android:fontFamily">@font/montserrat_light</item>
+    </style>
+
+    <style name="regular_font_24dp">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="regular_font_20dp">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="regular_font_14dp_black">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="regular_font_14dp_white">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="regular_font_12dp_white">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="regular_font_12dp_black">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+
+    <style name="regular_font_10dp_white">
+        <item name="android:textSize">10dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="regular_font_10dp_black">
+        <item name="android:textSize">10dp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+
+</resources>
