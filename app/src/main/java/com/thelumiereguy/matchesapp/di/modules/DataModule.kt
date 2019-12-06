@@ -1,23 +1,27 @@
 package com.thelumiereguy.matchesapp.di.modules
 
+import android.app.Application
+import androidx.room.Room
+import com.thelumiereguy.matchesapp.data.db.UsersDao
+import com.thelumiereguy.matchesapp.data.db.UsersDb
 import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 object DataModule {
-//    private const val DATABASE_NAME: String = "database-beaver"
-//
-//    @Provides
-//    @Singleton
-//    @JvmStatic
-//    fun provideDatabase(@ApplicationContext context: Context): RoomDatabase =
-//        Room.databaseBuilder(context, BeaverDatabase::class.java, DATABASE_NAME).build()
-//
-//    @Provides
-//    @Singleton
-//    @JvmStatic
-//    fun provideServerList(@ApplicationContext context: Context, gson: Gson): List<Server> =
-//        gson.fromJson(
-//            context.resources.openRawResource(R.raw.servers).bufferedReader(),
-//            TypeToken.getParameterized(List::class.java, Server::class.java).type
-//        )
+
+    @Provides
+    @Singleton
+    fun provideRoomDatabase(application: Application): UsersDb {
+        return Room
+            .databaseBuilder(application, UsersDb::class.java, UsersDb.DB_NAME)
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    fun provideUserDao(appDataBase: UsersDb): UsersDao {
+        return appDataBase.getUserDao()
+    }
 }

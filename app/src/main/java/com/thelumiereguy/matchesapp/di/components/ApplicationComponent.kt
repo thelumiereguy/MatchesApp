@@ -13,6 +13,7 @@ interface ApplicationComponent {
 
         @Component.Builder
         interface Builder {
+
                 @BindsInstance
                 fun application(application: MatchesApplication): Builder
 

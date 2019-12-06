@@ -3,6 +3,7 @@ package com.thelumiereguy.matchesapp.di.modules
 import android.app.Application
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.thelumiereguy.matchesapp.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -19,11 +20,12 @@ import javax.inject.Singleton
 
 @Module
 object NetworkModule {
+
     private const val BASE_URL: String = "https://newsapi.org/"
 
     @Provides
     @Singleton
-    fun provideCache(application: Application): Cache =
+    fun provideNetworkCache(application: Application): Cache =
         Cache(application.cacheDir, 20L * 1024 * 1024) //20 mo
 
     @Provides
@@ -84,13 +86,12 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
-        nullOrEmptyConverterFactory: Converter.Factory,
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit =
         Retrofit.Builder()
             .client(okHttpClient)
-            .addConverterFactory(nullOrEmptyConverterFactory)
             .addConverterFactory(gsonConverterFactory)
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .baseUrl(BASE_URL)
             .build()
 
