@@ -7,8 +7,8 @@ import com.thelumiereguy.matchesapp.data.db.enitity.UsersEntity
 @Dao
 interface UsersDao {
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun insertFood(food: UsersEntity): Long
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUsers(user: List<UsersEntity>)
 
 
     @Query("SELECT * from UsersEntity")

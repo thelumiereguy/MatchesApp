@@ -2,11 +2,12 @@ package com.thelumiereguy.matchesapp.ui.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.thelumiereguy.matchesapp.di.scopeAnnotations.ActivityScope
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
-@Singleton
+@ActivityScope
 class ViewModelFactory
 @Inject constructor(private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>) :
     ViewModelProvider.Factory {

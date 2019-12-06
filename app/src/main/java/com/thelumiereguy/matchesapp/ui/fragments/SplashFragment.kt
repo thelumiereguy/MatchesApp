@@ -15,14 +15,22 @@ import androidx.lifecycle.ViewModelProviders
 import com.thelumiereguy.matchesapp.R
 import com.thelumiereguy.matchesapp.databinding.FragmentSplashBinding
 import com.thelumiereguy.matchesapp.ui.LauncherViewModel
+import com.thelumiereguy.matchesapp.ui.base.BaseFragment
+import com.thelumiereguy.matchesapp.ui.factory.ViewModelFactory
+import javax.inject.Inject
 
 
-class SplashFragment : Fragment() {
+class SplashFragment : BaseFragment() {
 
 
     private val animSet = AnimatorSet()
     private lateinit var binding: FragmentSplashBinding
-    private lateinit var launcherViewModel: LauncherViewModel
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val launcherViewModel: LauncherViewModel by lazy { ViewModelProviders.of(requireActivity(),viewModelFactory).get(LauncherViewModel::class.java) }
+
     private val handler: Handler = Handler()
 
     override fun onCreateView(
@@ -32,8 +40,8 @@ class SplashFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_splash, container, false)
-        launcherViewModel = ViewModelProviders.of(requireActivity()).get(LauncherViewModel::class.java)
 
+        super.getActivityComponent()?.inject(this)
 
         initAnimation()
         return binding.root

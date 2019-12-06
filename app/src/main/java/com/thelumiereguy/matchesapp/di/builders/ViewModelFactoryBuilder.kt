@@ -5,13 +5,14 @@ import com.thelumiereguy.matchesapp.ui.factory.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 
+
 @Module(
     includes = [
         (RepositoryBuilder::class),
         (ViewModelBuilderWithKey::class)
     ]
 )
-abstract class ViewModelBuilder {
+abstract class ViewModelFactoryBuilder {
 
     @Binds
     abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory

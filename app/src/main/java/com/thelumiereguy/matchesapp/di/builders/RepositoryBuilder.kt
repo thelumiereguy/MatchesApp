@@ -8,5 +8,5 @@ import dagger.Module
 @Module
 abstract class RepositoryBuilder {
     @Binds
-    abstract fun bindsMovieRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository
+    abstract fun bindsMovieRepository(userRepositoryI: UserRepositoryImpl): UserRepository
 }

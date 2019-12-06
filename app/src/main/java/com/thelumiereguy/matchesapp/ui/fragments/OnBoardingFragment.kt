@@ -12,12 +12,20 @@ import com.thelumiereguy.matchesapp.R
 import com.thelumiereguy.matchesapp.databinding.FragmentOnBoardingBinding
 import com.thelumiereguy.matchesapp.ui.LauncherViewModel
 import com.thelumiereguy.matchesapp.ui.OnBoardingViewPagerAdapter
+import com.thelumiereguy.matchesapp.ui.base.BaseFragment
+import com.thelumiereguy.matchesapp.ui.factory.ViewModelFactory
+import javax.inject.Inject
 
 
-class OnBoardingFragment : Fragment() {
+class OnBoardingFragment : BaseFragment() {
 
     private lateinit var binding: FragmentOnBoardingBinding
-    private lateinit var launcherViewModel: LauncherViewModel
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val launcherViewModel: LauncherViewModel by lazy { ViewModelProviders.of(requireActivity(),viewModelFactory).get(LauncherViewModel::class.java) }
+
 
 
 
@@ -28,13 +36,14 @@ class OnBoardingFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_on_boarding, container, false)
-        launcherViewModel = ViewModelProviders.of(requireActivity()).get(LauncherViewModel::class.java)
-
         connectUIComponents()
         return binding.root
     }
 
     private fun connectUIComponents() {
+        super.getActivityComponent()?.inject(this)
+
+
         binding.vpOnboarding.apply {
             adapter = OnBoardingViewPagerAdapter(
                 OnBoardingPageContent.getOnBoardingContent()

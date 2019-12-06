@@ -5,6 +5,9 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.thelumiereguy.matchesapp.BuildConfig
+import com.thelumiereguy.matchesapp.data.network_service.NetworkService
+import com.thelumiereguy.matchesapp.di.builders.ViewModelFactoryBuilder
+import com.thelumiereguy.matchesapp.di.scopeAnnotations.ActivityScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -24,43 +27,43 @@ object NetworkModule {
     private const val BASE_URL: String = "https://newsapi.org/"
 
     @Provides
-    @Singleton
+    @ActivityScope
     fun provideNetworkCache(application: Application): Cache =
         Cache(application.cacheDir, 20L * 1024 * 1024) //20 mo
 
     @Provides
-    @Singleton
-    fun provideHttpLoggingInterceptor() = HttpLoggingInterceptor().apply {
-        level =
-            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
-            else HttpLoggingInterceptor.Level.NONE
+    @ActivityScope
+    fun provideHttpLoggingInterceptor():HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().apply {
+            level =
+                if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+                else HttpLoggingInterceptor.Level.NONE
+        }
     }
 
     @Provides
-    @Singleton
+    @ActivityScope
     fun provideOkHttpClient(
         cache: Cache,
-        httpLoggingInterceptor: HttpLoggingInterceptor,
-        requestInterceptor: Interceptor
+        httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
             .cache(cache)
-            .addInterceptor(requestInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .build()
 
 
     @Provides
-    @Singleton
+    @ActivityScope
     fun provideGson(): Gson = GsonBuilder().create()
 
     @Provides
-    @Singleton
+    @ActivityScope
     fun provideGsonConverterFactory(gson: Gson): GsonConverterFactory =
         GsonConverterFactory.create(gson)
 
     @Provides
-    @Singleton
+    @ActivityScope
     fun provideNullOrEmptyConverterFactory(): Converter.Factory =
         object : Converter.Factory() {
             override fun responseBodyConverter(
@@ -83,7 +86,7 @@ object NetworkModule {
 
 
     @Provides
-    @Singleton
+    @ActivityScope
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         gsonConverterFactory: GsonConverterFactory
@@ -95,5 +98,10 @@ object NetworkModule {
             .baseUrl(BASE_URL)
             .build()
 
+    @Provides
+    @ActivityScope
+    fun provideNetworkService(retrofit: Retrofit): NetworkService{
+       return retrofit.create(NetworkService::class.java)
+    }
 
 }

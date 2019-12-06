@@ -4,7 +4,16 @@ import android.app.Application
 import com.thelumiereguy.matchesapp.di.components.DaggerApplicationComponent
 
 class MatchesApplication:Application() {
-    private val applicationInjector = DaggerApplicationComponent.builder()
+    val applicationInjector = DaggerApplicationComponent.builder()
         .application(this)
         .build()
+
+
+    override fun onCreate() {
+        super.onCreate()
+//        startKoin {
+//            androidContext(this@MatchesApplication)
+//            modules(arrayListOf(NetworkModule, viewModule))
+//        }
+    }
 }

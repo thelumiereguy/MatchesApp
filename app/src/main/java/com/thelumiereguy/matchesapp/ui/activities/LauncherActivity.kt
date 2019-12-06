@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.thelumiereguy.matchesapp.*
 import com.thelumiereguy.matchesapp.ui.ui_enitities.CustomAnimationSet.Companion.getTopBottomAnimation
@@ -11,14 +12,23 @@ import com.thelumiereguy.matchesapp.ui.LauncherViewModel
 import com.thelumiereguy.matchesapp.ui.fragments.OnBoardingFragment
 import com.thelumiereguy.matchesapp.ui.fragments.SplashFragment
 import com.thelumiereguy.matchesapp.ui.base.BaseActivity
+import com.thelumiereguy.matchesapp.ui.factory.ViewModelFactory
 import com.thelumiereguy.matchesapp.ui.ui_enitities.FragmentNavigationDetails
+import javax.inject.Inject
 
 class LauncherActivity : BaseActivity() {
 
+
+
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val launcherViewModel: LauncherViewModel by lazy { ViewModelProviders.of(this,viewModelFactory).get(LauncherViewModel::class.java) }
+
     private lateinit var flFragmentContainer: FrameLayout
-    private val launcherViewModel: LauncherViewModel by lazy {
-        ViewModelProviders.of(this,viewModelFactory).get(LauncherViewModel::class.java)
-    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -49,10 +59,10 @@ class LauncherActivity : BaseActivity() {
     }
 
     private fun initUIComponents() {
+        super.getActivityComponent()?.inject(this)
         window.allowEnterTransitionOverlap = false
         window.allowReturnTransitionOverlap = false
         flFragmentContainer = findViewById(R.id.fl_launcher_fragment_container)
-        launcherViewModel = ViewModelProviders.of(this).get(LauncherViewModel::class.java)
     }
 
 

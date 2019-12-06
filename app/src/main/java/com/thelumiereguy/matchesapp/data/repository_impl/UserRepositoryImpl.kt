@@ -3,9 +3,11 @@ package com.thelumiereguy.matchesapp.data.repository_impl
 import com.thelumiereguy.matchesapp.domain.enitity.UsersList
 import com.thelumiereguy.matchesapp.data.network_service.NetworkService
 import com.thelumiereguy.matchesapp.data.db.UsersDao
+import com.thelumiereguy.matchesapp.data.db.enitity.UsersEntity
 import com.thelumiereguy.matchesapp.domain.repository.UserRepository
+import javax.inject.Inject
 
-class UserRepositoryImpl constructor(
+class UserRepositoryImpl @Inject constructor(
     private val networkService: NetworkService,
     private val usersDao: UsersDao
 ) : UserRepository {
@@ -31,5 +33,11 @@ class UserRepositoryImpl constructor(
                 usersList
             )
         }
+    }
+
+    override suspend fun saveAllUsers(usersList: UsersList) {
+        val usersEntityList: MutableList<UsersEntity> = ArrayList()
+        usersEntityList.addAll(usersList.results.map { user -> UsersEntity.mapFrom(user)})
+        usersDao.insertUsers(usersEntityList)
     }
 }

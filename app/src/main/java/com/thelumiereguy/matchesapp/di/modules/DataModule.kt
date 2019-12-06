@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import com.thelumiereguy.matchesapp.data.db.UsersDao
 import com.thelumiereguy.matchesapp.data.db.UsersDb
+import com.thelumiereguy.matchesapp.di.qualifierAnnotations.ApplicationContext
+import com.thelumiereguy.matchesapp.di.scopeAnnotations.ActivityScope
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -12,7 +14,6 @@ import javax.inject.Singleton
 object DataModule {
 
     @Provides
-    @Singleton
     fun provideRoomDatabase(application: Application): UsersDb {
         return Room
             .databaseBuilder(application, UsersDb::class.java, UsersDb.DB_NAME)

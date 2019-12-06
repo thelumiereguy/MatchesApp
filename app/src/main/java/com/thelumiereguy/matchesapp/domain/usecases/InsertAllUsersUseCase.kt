@@ -1,17 +1,18 @@
 package com.thelumiereguy.matchesapp.domain.usecases
 
+
 import com.thelumiereguy.matchesapp.domain.enitity.UsersList
 import com.thelumiereguy.matchesapp.domain.repository.UserRepository
 import javax.inject.Inject
 
-class GetAllUsersUseCase @Inject constructor(
+class InsertAllUsersUseCase @Inject constructor(
     private val userRepository: UserRepository
-) : BaseUseCase<UsersList>() {
+) :  BaseUseCase<Unit>() {
 
-    private var isInternetConnected:Boolean = true
+    lateinit var userList:UsersList
 
-    override suspend fun executeOnBackground(): UsersList {
-        return userRepository.getUsersList(isInternetConnected)
+    override suspend fun executeOnBackground() {
+        userRepository.saveAllUsers(userList)
     }
 
 }

@@ -8,11 +8,7 @@ import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
 
-@Module(
-    includes = [
-        SystemServiceModule::class,
-        NetworkModule::class, DataModule::class]
-)
+@Module
 abstract class ApplicationModule {
 
     @Binds

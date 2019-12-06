@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.thelumiereguy.matchesapp.di.components.ActivityComponent
 import com.thelumiereguy.matchesapp.di.components.DaggerActivityComponent
+import com.thelumiereguy.matchesapp.di.modules.ContextModule
 import com.thelumiereguy.matchesapp.ui.ui_enitities.FragmentNavigationDetails
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -15,6 +16,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mActivityComponent = DaggerActivityComponent.builder()
+            .contextModule(ContextModule(application))
             .build()
     }
 
