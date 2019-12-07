@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.UserDetailActivity">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:transitionName="@string/user_image_transition"
+                android:id="@+id/iv_user_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@mipmap/login"
+                android:elevation="24dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.6" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9" />
+
+
+            <TextView
+                android:id="@+id/tv_location"
+                style="@style/montserrat_light_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_location_on"
+                android:drawablePadding="@dimen/genreDataRowItemStartEndMargin"
+                android:gravity="center"
+                android:text="Mumbai, India"
+                android:textAppearance="@style/regular_font_12sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toTopOf="@+id/guideline"  />
+
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/montserrat_bold_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Piyush Pradeepkumar"
+                android:textAppearance="@style/regular_font_20sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toStartOf="@+id/card_favourite"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+
+
+
+            <TextView
+                android:id="@+id/tv_sign"
+                style="@style/montserrat_light_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textAppearance="@style/regular_font_14sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+
+
+            <TextView
+                style="@style/montserrat_light_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                android:textAppearance="@style/regular_font_14sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sign" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_favourite"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="16dp"
+                android:alpha="0.7"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:cardBackgroundColor="@color/colorGrey"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toTopOf="@+id/guideline">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/ic_favourite" />
+
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_close"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:alpha="0.7"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:cardBackgroundColor="@color/colorGrey"
+                app:cardCornerRadius="24dp"
+                android:layout_gravity="end"
+                app:cardElevation="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/ic_close_black_24dp" />
+
+
+            </androidx.cardview.widget.CardView>
+
+
+    </FrameLayout>
+
+
+</layout>

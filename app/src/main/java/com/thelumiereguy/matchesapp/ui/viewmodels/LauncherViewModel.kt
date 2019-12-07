@@ -1,8 +1,9 @@
-package com.thelumiereguy.matchesapp.ui
+package com.thelumiereguy.matchesapp.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.thelumiereguy.matchesapp.data.shared_preferences.PreferencesHelperImpl
 import com.thelumiereguy.matchesapp.domain.enitity.ErrorModel
 import com.thelumiereguy.matchesapp.domain.enitity.UsersList
 import com.thelumiereguy.matchesapp.domain.usecases.GetAllUsersUseCase
@@ -10,7 +11,8 @@ import com.thelumiereguy.matchesapp.domain.usecases.InsertAllUsersUseCase
 import javax.inject.Inject
 
 class LauncherViewModel @Inject constructor(
-    getAllUsersUseCase: GetAllUsersUseCase,
+    preferencesHelperImpl: PreferencesHelperImpl,
+    private val getAllUsersUseCase: GetAllUsersUseCase,
     private val insertAllUsersUseCase: InsertAllUsersUseCase
 ) : ViewModel() {
 
@@ -18,20 +20,21 @@ class LauncherViewModel @Inject constructor(
 
 
     init {
-        getAllUsersUseCase.execute {
-            onComplete {
-                insertAllUsers(it)
-            }
-
-            onError { throwable ->
-                error.value = throwable
-
+        if (!preferencesHelperImpl.getLoggedIn()) {
+            getAllUsersUseCase.execute {
+                onComplete {
+                    insertAllUsers(it)
+                }
+                onError { throwable ->
+                    error.value = throwable
+                }
             }
         }
+
     }
 
 
-    private fun insertAllUsers(userList:UsersList) {
+    private fun insertAllUsers(userList: UsersList) {
         insertAllUsersUseCase.userList = userList
         insertAllUsersUseCase.execute {
             onError { throwable ->
@@ -43,23 +46,34 @@ class LauncherViewModel @Inject constructor(
 
     // Encapsulate access to mutable LiveData through getter
     private val launcherState: MutableLiveData<LauncherState> =
-        MutableLiveData(LauncherState.LoadingState())
+        MutableLiveData(LauncherState.LoadingState)
 
     fun getState(): LiveData<LauncherState> = launcherState
 
 
     fun showHome() {
-        launcherState.postValue(LauncherState.Home())
+        launcherState.postValue(LauncherState.Home)
+    }
+
+    fun showLogin() {
+        launcherState.postValue(LauncherState.Login)
     }
 
 
     fun showOnBoarding() {
-        launcherState.postValue(LauncherState.OnBoarding())
+        launcherState.postValue(LauncherState.OnBoarding)
     }
 
     sealed class LauncherState {
-        class LoadingState : LauncherState()
-        class OnBoarding : LauncherState()
-        class Home : LauncherState()
+        object LoadingState : LauncherState()
+        object OnBoarding : LauncherState()
+        object Login : LauncherState()
+        object Home : LauncherState()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        insertAllUsersUseCase.unsubscribe()
+        getAllUsersUseCase.unsubscribe()
     }
 }

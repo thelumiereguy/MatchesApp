@@ -1,11 +1,10 @@
-package com.thelumiereguy.matchesapp.ui.factory
+package com.thelumiereguy.matchesapp.ui.viewmodels.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.thelumiereguy.matchesapp.di.scopeAnnotations.ActivityScope
 import javax.inject.Inject
 import javax.inject.Provider
-import javax.inject.Singleton
 
 @ActivityScope
 class ViewModelFactory

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "be7090b271d468c2520b5490d0a87254",
+    "identityHash": "a3e268234fc9faa97ae8b47720f8821b",
     "entities": [
       {
         "tableName": "UsersEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`email` TEXT NOT NULL, `cell` TEXT NOT NULL, `age` INTEGER NOT NULL, `date` TEXT NOT NULL, `gender` TEXT NOT NULL, `name` TEXT NOT NULL, `city` TEXT NOT NULL, `country` TEXT NOT NULL, `postcode` INTEGER NOT NULL, `state` TEXT NOT NULL, `latitude` TEXT NOT NULL, `longitude` TEXT NOT NULL, `streetName` TEXT NOT NULL, `number` INTEGER NOT NULL, `first` TEXT NOT NULL, `last` TEXT NOT NULL, `title` TEXT NOT NULL, `phone` TEXT NOT NULL, `large` TEXT NOT NULL, `medium` TEXT NOT NULL, `thumbnail` TEXT NOT NULL, `registeredAge` INTEGER NOT NULL, `registeredDate` TEXT NOT NULL, PRIMARY KEY(`email`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`email` TEXT NOT NULL, `cell` TEXT NOT NULL, `age` INTEGER NOT NULL, `date` TEXT NOT NULL, `gender` TEXT NOT NULL, `name` TEXT NOT NULL, `city` TEXT NOT NULL, `country` TEXT NOT NULL, `postcode` TEXT NOT NULL, `state` TEXT NOT NULL, `latitude` TEXT NOT NULL, `longitude` TEXT NOT NULL, `streetName` TEXT NOT NULL, `number` INTEGER NOT NULL, `first` TEXT NOT NULL, `last` TEXT NOT NULL, `title` TEXT NOT NULL, `phone` TEXT NOT NULL, `large` TEXT NOT NULL, `medium` TEXT NOT NULL, `thumbnail` TEXT NOT NULL, `registeredAge` INTEGER NOT NULL, `registeredDate` TEXT NOT NULL, `status` TEXT, `favourite` INTEGER NOT NULL, PRIMARY KEY(`email`))",
         "fields": [
           {
             "fieldPath": "email",
@@ -59,7 +59,7 @@
           {
             "fieldPath": "postcode",
             "columnName": "postcode",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -145,6 +145,18 @@
             "columnName": "registeredDate",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "favourite",
+            "columnName": "favourite",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -160,7 +172,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'be7090b271d468c2520b5490d0a87254')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a3e268234fc9faa97ae8b47720f8821b')"
     ]
   }
 }

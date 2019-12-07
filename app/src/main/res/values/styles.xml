@@ -28,45 +28,28 @@
         <item name="android:fontFamily">@font/montserrat_light</item>
     </style>
 
-    <style name="regular_font_24dp">
-        <item name="android:textSize">24dp</item>
-        <item name="android:textColor">@color/colorBlack</item>
+    <style name="regular_font_24sp">
+        <item name="android:textSize">24sp</item>
     </style>
 
-    <style name="regular_font_20dp">
-        <item name="android:textSize">20dp</item>
-        <item name="android:textColor">@color/colorBlack</item>
+    <style name="regular_font_20sp">
+        <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="regular_font_14dp_black">
-        <item name="android:textSize">14dp</item>
-        <item name="android:textColor">@color/colorBlack</item>
+    <style name="regular_font_18sp">
+        <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="regular_font_14dp_white">
-        <item name="android:textSize">14dp</item>
-        <item name="android:textColor">@color/colorWhite</item>
+    <style name="regular_font_16sp">
+        <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="regular_font_12dp_white">
-        <item name="android:textSize">12dp</item>
-        <item name="android:textColor">@color/colorWhite</item>
+    <style name="regular_font_14sp">
+        <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="regular_font_12dp_black">
-        <item name="android:textSize">12dp</item>
-        <item name="android:textColor">@color/colorBlack</item>
-    </style>
-
-
-    <style name="regular_font_10dp_white">
-        <item name="android:textSize">10dp</item>
-        <item name="android:textColor">@color/colorWhite</item>
-    </style>
-
-    <style name="regular_font_10dp_black">
-        <item name="android:textSize">10dp</item>
-        <item name="android:textColor">@color/colorBlack</item>
+    <style name="regular_font_12sp">
+        <item name="android:textSize">12sp</item>
     </style>
 
 

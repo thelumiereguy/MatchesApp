@@ -1,4 +1,4 @@
-package com.thelumiereguy.matchesapp.ui.ui_enitities
+package com.thelumiereguy.matchesapp.ui.ui_models
 
 import com.thelumiereguy.matchesapp.R
 

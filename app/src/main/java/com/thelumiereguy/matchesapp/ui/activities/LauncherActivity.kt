@@ -2,32 +2,40 @@ package com.thelumiereguy.matchesapp.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.FrameLayout
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import com.thelumiereguy.matchesapp.*
-import com.thelumiereguy.matchesapp.ui.ui_enitities.CustomAnimationSet.Companion.getTopBottomAnimation
-import com.thelumiereguy.matchesapp.ui.LauncherViewModel
+import com.thelumiereguy.matchesapp.domain.enitity.ErrorModel
+import com.thelumiereguy.matchesapp.ui.ui_models.CustomAnimationSet.Companion.getTopBottomAnimation
+import com.thelumiereguy.matchesapp.ui.viewmodels.LauncherViewModel
 import com.thelumiereguy.matchesapp.ui.fragments.OnBoardingFragment
 import com.thelumiereguy.matchesapp.ui.fragments.SplashFragment
 import com.thelumiereguy.matchesapp.ui.base.BaseActivity
-import com.thelumiereguy.matchesapp.ui.factory.ViewModelFactory
-import com.thelumiereguy.matchesapp.ui.ui_enitities.FragmentNavigationDetails
+import com.thelumiereguy.matchesapp.ui.fragments.LoginFragment
+import com.thelumiereguy.matchesapp.ui.viewmodels.factory.ViewModelFactory
+import com.thelumiereguy.matchesapp.ui.ui_models.FragmentNavigationDetails
+import com.thelumiereguy.matchesapp.utils.getClassTag
+import com.thelumiereguy.matchesapp.utils.getMethodTag
+import java.lang.StringBuilder
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class LauncherActivity : BaseActivity() {
 
-
-
-
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val launcherViewModel: LauncherViewModel by lazy { ViewModelProviders.of(this,viewModelFactory).get(LauncherViewModel::class.java) }
+    private val launcherViewModel: LauncherViewModel by lazy {
+        ViewModelProviders.of(
+            this@LauncherActivity,
+            viewModelFactory
+        ).get(LauncherViewModel::class.java)
+    }
 
     private lateinit var flFragmentContainer: FrameLayout
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +44,13 @@ class LauncherActivity : BaseActivity() {
         setContentView(R.layout.activity_launcher)
         initUIComponents()
         startObservingState()
-        showSplashFragment()
+        if (savedInstanceState == null)
+            showSplashFragment()
     }
 
     private fun startObservingState() {
-        launcherViewModel.getState().observe(this, Observer { observable ->
+
+        launcherViewModel.getState().observe(this@LauncherActivity, Observer { observable ->
             observable?.let {
                 when (it) {
                     is LauncherViewModel.LauncherState.OnBoarding -> {
@@ -49,14 +59,37 @@ class LauncherActivity : BaseActivity() {
                     is LauncherViewModel.LauncherState.Home -> {
                         startHome()
                     }
-                    else -> {
-
+                    is LauncherViewModel.LauncherState.Login -> {
+                        showLogin()
                     }
                 }
             }
+        })
 
+        launcherViewModel.error.observe(this@LauncherActivity, Observer { observable ->
+            observable?.let {
+                when (it.exception) {
+                    is UnknownHostException -> {
+                    }
+                    else -> {
+                        showErrorSnack(it)
+                    }
+                }
+            }
         })
     }
+
+    private fun showLogin() {
+        val navigationArgs =
+            FragmentNavigationDetails(
+                supportFragmentManager,
+                LoginFragment(),
+                false,
+                flFragmentContainer.id
+            )
+        super.replaceFragment(navigationArgs)
+    }
+
 
     private fun initUIComponents() {
         super.getActivityComponent()?.inject(this)
@@ -102,7 +135,6 @@ class LauncherActivity : BaseActivity() {
             Intent(this@LauncherActivity, HomeActivity::class.java)
         )
         finish()
-
     }
 
 

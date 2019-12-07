@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <com.google.android.material.card.MaterialCardView
+            app:cardElevation="12dp"
+            app:cardCornerRadius="4dp"
+            android:layout_width="@dimen/genreDataChannelAvatarHeight"
+            android:layout_height="@dimen/genreDataChannelAvatarHeight">
+
+            <ImageView
+                android:id="@+id/iv_user_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:transitionName="@string/user_image_transition" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/genreDataRowItemStartEndMargin"
+            android:baselineAligned="false"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/montserrat_bold_font"
+                android:textAppearance="@style/regular_font_18sp"
+                android:layout_weight="1"
+                android:text="random Text" />
+
+            <TextView
+                android:id="@+id/tv_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/montserrat_light_font"
+                android:textAppearance="@style/regular_font_14sp"
+                android:layout_weight="1"
+                android:text="random Text" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/montserrat_light_font"
+                android:textAppearance="@style/regular_font_14sp"
+                android:layout_weight="1"
+                android:text="random Text" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

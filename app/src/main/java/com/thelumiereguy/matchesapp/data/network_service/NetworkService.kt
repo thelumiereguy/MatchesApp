@@ -6,8 +6,8 @@ import retrofit2.http.GET
 
 interface NetworkService {
 
-        @GET("api/")
-        fun getAllUsers(
+        @GET("api/?results=10")
+        fun getAllUsersAsync(
         ): Deferred<UsersList>
 
 

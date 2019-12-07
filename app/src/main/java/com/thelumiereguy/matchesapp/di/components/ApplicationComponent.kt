@@ -10,8 +10,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        ApplicationModule::class,
-        SystemServiceModule::class
+        ApplicationModule::class
     ]
 )
 

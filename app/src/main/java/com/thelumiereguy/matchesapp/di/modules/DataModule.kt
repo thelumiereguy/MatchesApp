@@ -16,7 +16,7 @@ object DataModule {
     @Provides
     fun provideRoomDatabase(application: Application): UsersDb {
         return Room
-            .databaseBuilder(application, UsersDb::class.java, UsersDb.DB_NAME)
+            .databaseBuilder(application.applicationContext, UsersDb::class.java, UsersDb.DB_NAME)
             .fallbackToDestructiveMigration()
             .build()
     }

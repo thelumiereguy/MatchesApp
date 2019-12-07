@@ -1,4 +1,4 @@
-package com.thelumiereguy.matchesapp.ui.ui_enitities
+package com.thelumiereguy.matchesapp.ui.ui_models
 
 import android.widget.ImageView
 import androidx.collection.ArrayMap
@@ -25,11 +25,10 @@ data class CustomAnimationSet constructor(
     companion object {
         fun getTopBottomAnimation() =
             CustomAnimationSet(
-                R.anim.slide_in_from_below,
-                R.anim.slide_out_to_top,
-                R.anim.slide_in_from_top,
-                R.anim.slide_out_to_below
+                R.anim.slide_in_from_right,
+                R.anim.slide_out_to_left,
+                R.anim.slide_in_from_left,
+                R.anim.slide_out_to_right
             )
-
     }
 }

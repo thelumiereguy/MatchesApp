@@ -1,4 +1,8 @@
 package com.thelumiereguy.matchesapp.domain.enitity
 
-data class ErrorModel constructor(val message:String,
-                                  val errorCode:Int)
+import java.lang.Exception
+
+data class ErrorModel constructor(
+    val exception: Exception,
+    val message:String?,
+    val errorCode:Int)

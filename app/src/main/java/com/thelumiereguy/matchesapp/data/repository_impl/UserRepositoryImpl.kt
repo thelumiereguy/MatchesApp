@@ -22,7 +22,7 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun getUsersList(isInternetConnected: Boolean): UsersList {
 
         return if (isInternetConnected) {
-            networkService.getAllUsers().await()
+            networkService.getAllUsersAsync().await()
 
         } else {
             val usersList: List<UsersList.User> = usersDao.getAllUsersLocal().map {
@@ -37,7 +37,22 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun saveAllUsers(usersList: UsersList) {
         val usersEntityList: MutableList<UsersEntity> = ArrayList()
-        usersEntityList.addAll(usersList.results.map { user -> UsersEntity.mapFrom(user)})
+        usersEntityList.addAll(usersList.results.map { user -> UsersEntity.mapFrom(user) })
         usersDao.insertUsers(usersEntityList)
+    }
+
+    override suspend fun updateUser(user: UsersList.User) {
+        usersDao.updateUser(UsersEntity.mapFrom(user))
+    }
+
+    override suspend fun getFavourites(): UsersList {
+        val usersList: List<UsersList.User> = usersDao.getAllFavourites().map {
+            it.mapToUser()
+        }
+        return UsersList(
+            UsersList.Info(),
+            usersList
+        )
+
     }
 }

@@ -15,7 +15,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_next"
-            style="@style/regular_font_14dp_black"
+            style="@style/regular_font_14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"

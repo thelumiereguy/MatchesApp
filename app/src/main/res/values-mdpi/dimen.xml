@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pageMargin">30dp</dimen>
+    <dimen name="offset">70dp</dimen>
+
+    //GenreData Screen Channels
+    <dimen name="channelDataColumnItemStartEndMargin">16dp</dimen>
+    <dimen name="channelDataColumnItemTopBottomMargin">4dp</dimen>
+
+    //GenreData Screen Genres
+    <dimen name="genreDataRowItemStartEndMargin">8dp</dimen>
+    <dimen name="genreDataRowColumnItemTopBottomMargin">16dp</dimen>
+
+
+    //PlayerContainerHeightChannelDetail
+    <dimen name="channelDetailPlayerHeight">50dp</dimen>
+</resources>

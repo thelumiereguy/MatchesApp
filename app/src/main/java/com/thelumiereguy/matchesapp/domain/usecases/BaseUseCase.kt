@@ -39,7 +39,8 @@ abstract class BaseUseCase<T> {
             } catch (e: Exception) {
                 response(
                     ErrorModel(
-                        e.message.toString(),
+                        e,
+                        e.message,
                         -1
                     )
                 )

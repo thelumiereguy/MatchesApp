@@ -8,6 +8,7 @@ import com.thelumiereguy.matchesapp.BuildConfig
 import com.thelumiereguy.matchesapp.data.network_service.NetworkService
 import com.thelumiereguy.matchesapp.di.builders.ViewModelFactoryBuilder
 import com.thelumiereguy.matchesapp.di.scopeAnnotations.ActivityScope
+import com.thelumiereguy.matchesapp.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -23,8 +24,6 @@ import javax.inject.Singleton
 
 @Module
 object NetworkModule {
-
-    private const val BASE_URL: String = "https://newsapi.org/"
 
     @Provides
     @ActivityScope

@@ -4,6 +4,7 @@ package com.thelumiereguy.matchesapp.data.db.enitity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.thelumiereguy.matchesapp.domain.enitity.Status
 import com.thelumiereguy.matchesapp.domain.enitity.UsersList
 
 @Entity
@@ -37,7 +38,7 @@ data class UsersEntity @JvmOverloads constructor(
     @ColumnInfo(name = "country")
     val country: String,
     @ColumnInfo(name = "postcode")
-    val postcode: Int,
+    val postcode: String,
     @ColumnInfo(name = "state")
     val state: String,
 
@@ -74,8 +75,11 @@ data class UsersEntity @JvmOverloads constructor(
     @ColumnInfo(name = "registeredAge")
     val registeredAge: Int,
     @ColumnInfo(name = "registeredDate")
-    val registeredDate: String
+    val registeredDate: String,
 
+    val status: String?,
+
+    val favourite: Boolean
 ) {
 
 
@@ -125,7 +129,9 @@ data class UsersEntity @JvmOverloads constructor(
                 "",
                 "",
                 ""
-            )
+            ),
+            favourite = favourite,
+            status = status
         )
     }
 
@@ -154,7 +160,9 @@ data class UsersEntity @JvmOverloads constructor(
                 large = user.picture.large,
                 thumbnail = user.picture.thumbnail,
                 registeredAge = user.registered.age,
-                registeredDate = user.registered.date
+                registeredDate = user.registered.date,
+                favourite = user.favourite,
+                status = user.status
             )
         }
     }

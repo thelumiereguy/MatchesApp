@@ -10,8 +10,13 @@ interface UsersDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUsers(user: List<UsersEntity>)
 
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateUser(user: UsersEntity)
 
     @Query("SELECT * from UsersEntity")
     suspend fun getAllUsersLocal(): List<UsersEntity>
+
+    @Query("SELECT * from UsersEntity WHERE favourite = 1")
+    suspend fun getAllFavourites(): List<UsersEntity>
 
 }

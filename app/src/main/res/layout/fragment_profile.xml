@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/genreDataRowColumnItemTopBottomMargin"
+    tools:context=".ui.fragments.ProfileFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_margin="@dimen/genreDataRowColumnItemTopBottomMargin"
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardElevation="12dp"
+        app:cardCornerRadius="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/montserrat_bold_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Piyush Pradeepkumar"
+        android:textAppearance="@style/regular_font_18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/montserrat_light_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="I'm an Android enthusiast and a Developer, in pursuit of Knowledge. My other hobbies include Photography, Singing and Playing Guitar"
+        android:textAlignment="center"
+        android:textAppearance="@style/regular_font_18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

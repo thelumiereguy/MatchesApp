@@ -1,4 +1,4 @@
-package com.thelumiereguy.matchesapp.ui
+package com.thelumiereguy.matchesapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.thelumiereguy.matchesapp.ui.ui_enitities.OnBoardingPageContent
+import com.thelumiereguy.matchesapp.ui.ui_models.OnBoardingPageContent
 import com.thelumiereguy.matchesapp.R
 
 class OnBoardingViewPagerAdapter constructor(

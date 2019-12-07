@@ -8,7 +8,7 @@ class GetAllUsersUseCase @Inject constructor(
     private val userRepository: UserRepository
 ) : BaseUseCase<UsersList>() {
 
-    private var isInternetConnected:Boolean = true
+    var isInternetConnected:Boolean = true
 
     override suspend fun executeOnBackground(): UsersList {
         return userRepository.getUsersList(isInternetConnected)

@@ -20,9 +20,12 @@ android {
         }
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = ["room.incremental":"true"]
+                arguments = ["room.incremental": "true"]
             }
         }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -73,19 +76,17 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha02'
 
     //Leak Canary
-    implementation 'com.squareup.leakcanary:leakcanary-android:2.0'
+//    implementation 'com.squareup.leakcanary:leakcanary-android:2.0'
 
     //Coil
     implementation 'io.coil-kt:coil:0.8.0'
 
 
-    //Shimmer
-    implementation 'com.facebook.shimmer:shimmer:0.5.0'
-
 
     // optional - Test helpers for LiveData
     testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
 
+    implementation "com.yuyakaido.android:card-stack-view:2.3.4"
 
     //Room
     implementation 'androidx.room:room-runtime:2.2.2'
