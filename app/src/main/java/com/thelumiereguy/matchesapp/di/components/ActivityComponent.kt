@@ -7,6 +7,7 @@ import com.thelumiereguy.matchesapp.di.modules.SystemServiceModule
 import com.thelumiereguy.matchesapp.di.scopeAnnotations.ActivityScope
 import com.thelumiereguy.matchesapp.ui.activities.HomeActivity
 import com.thelumiereguy.matchesapp.ui.activities.LauncherActivity
+import com.thelumiereguy.matchesapp.ui.activities.UserDetailActivity
 import com.thelumiereguy.matchesapp.ui.base.BaseActivity
 import com.thelumiereguy.matchesapp.ui.fragments.*
 import dagger.Component
@@ -30,4 +31,7 @@ interface ActivityComponent {
     fun inject(homeFragment: HomeFragment)
     fun inject(favouritesFragment: FavouritesFragment)
     fun inject(loginFragment: LoginFragment)
+    fun inject(userDetailActivity: UserDetailActivity) {
+
+    }
 }

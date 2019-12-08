@@ -5,6 +5,7 @@
     tools:context=".ui.activities.HomeActivity">
 
     <LinearLayout
+        android:background="#FEF5F8"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -12,25 +13,27 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/home_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="8dp"
             app:titleMarginTop="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
 
-                <ImageButton
-                    android:background="?attr/selectableItemBackgroundBorderless"
+                <com.thelumiereguy.matchesapp.ui.views.CustomImageView
+                    android:layoutDirection="rtl"
                     android:id="@+id/ib_settings"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_setting"
                     android:scaleType="fitXY"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_logout"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,7 +49,6 @@
                     app:layout_constraintEnd_toStartOf="@+id/ib_settings"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -66,6 +68,7 @@
             android:id="@+id/bnv_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:backgroundTint="#FEF5F8"
             app:itemHorizontalTranslationEnabled="true"
             app:itemRippleColor="@android:color/transparent"
             app:labelVisibilityMode="selected"

@@ -11,12 +11,12 @@ data class OnBoardingPageContent(
         fun getOnBoardingContent():List<OnBoardingPageContent>{
             return listOf(
                 OnBoardingPageContent(
-                    "Hello",
-                    R.drawable.ic_heart
+                    "Find your match",
+                    R.mipmap.onboarding_1
                 ),
                 OnBoardingPageContent(
-                    "Not Hello",
-                    R.drawable.ic_heart
+                    "Every love story is beautiful, but make yours unique",
+                    R.mipmap.onboarding_2
                 )
             )
         }

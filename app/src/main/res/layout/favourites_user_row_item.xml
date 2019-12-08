@@ -2,64 +2,81 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <LinearLayout
+        android:background="#FEF5F8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp">
-
-        <com.google.android.material.card.MaterialCardView
-            app:cardElevation="12dp"
-            app:cardCornerRadius="4dp"
-            android:layout_width="@dimen/genreDataChannelAvatarHeight"
-            android:layout_height="@dimen/genreDataChannelAvatarHeight">
-
-            <ImageView
-                android:id="@+id/iv_user_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:transitionName="@string/user_image_transition" />
-
-        </com.google.android.material.card.MaterialCardView>
-
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/ll_root"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/genreDataRowItemStartEndMargin"
-            android:baselineAligned="false"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/montserrat_bold_font"
-                android:textAppearance="@style/regular_font_18sp"
-                android:layout_weight="1"
-                android:text="random Text" />
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="@dimen/genreDataChannelAvatarHeight"
+                android:layout_height="@dimen/genreDataChannelAvatarHeight"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="6dp">
 
-            <TextView
-                android:id="@+id/tv_age"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/montserrat_light_font"
-                android:textAppearance="@style/regular_font_14sp"
-                android:layout_weight="1"
-                android:text="random Text" />
+                <ImageView
+                    android:id="@+id/iv_user_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:transitionName="@string/user_image_transition" />
 
-            <TextView
-                android:id="@+id/tv_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/montserrat_light_font"
-                android:textAppearance="@style/regular_font_14sp"
-                android:layout_weight="1"
-                android:text="random Text" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/genreDataRowItemStartEndMargin"
+                android:baselineAligned="false"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/montserrat_bold_font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textAppearance="@style/regular_font_16sp" />
+
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    style="@style/montserrat_light_font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textAppearance="@style/regular_font_14sp" />
+
+                <TextView
+                    android:id="@+id/tv_age"
+                    style="@style/montserrat_light_font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textAppearance="@style/regular_font_14sp" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/channelDataColumnItemStartEndMargin"
+            android:layout_marginEnd="@dimen/channelDataColumnItemStartEndMargin"
+            android:background="@color/colorDesaturatedBlack" />
 
     </LinearLayout>
+
 
 </layout>

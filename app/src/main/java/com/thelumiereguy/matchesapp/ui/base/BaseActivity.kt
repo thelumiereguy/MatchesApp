@@ -1,9 +1,7 @@
 package com.thelumiereguy.matchesapp.ui.base
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
@@ -13,7 +11,6 @@ import com.thelumiereguy.matchesapp.di.modules.ContextModule
 import com.thelumiereguy.matchesapp.domain.enitity.ErrorModel
 import com.thelumiereguy.matchesapp.ui.ui_models.FragmentNavigationDetails
 import com.thelumiereguy.matchesapp.utils.getClassTag
-import java.lang.StringBuilder
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -44,16 +41,6 @@ abstract class BaseActivity : AppCompatActivity() {
                 it.popEnter,
                 it.popExit
             )
-        }
-        navigationArgs.sharedElements?.let {
-            transaction.apply {
-                for ((key, value) in it) {
-                    addSharedElement(value, key)
-                }
-            }
-        }
-        if (navigationArgs.addToBackStack) {
-            transaction.addToBackStack(navigationArgs.fragmentObj.javaClass.simpleName)
         }
         transaction.replace(navigationArgs.frameId, navigationArgs.fragmentObj).commit()
     }

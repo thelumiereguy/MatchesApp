@@ -5,26 +5,43 @@
     tools:context=".ui.activities.UserDetailActivity">
 
 
-    <FrameLayout
+    <ScrollView
+        android:background="#FEF5F8"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:transitionName="@string/user_image_transition"
-                android:id="@+id/iv_user_image"
+
+            <FrameLayout
+                android:id="@+id/frameLayout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@mipmap/login"
-                android:elevation="24dp"
-                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@+id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/iv_user_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:transitionName="@string/user_image_transition" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/black_gradient_inverted" />
+
+
+            </FrameLayout>
+
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
@@ -53,14 +70,13 @@
                 style="@style/montserrat_light_font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/ic_location_on"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_location_new"
                 android:drawablePadding="@dimen/genreDataRowItemStartEndMargin"
                 android:gravity="center"
-                android:text="Mumbai, India"
                 android:textAppearance="@style/regular_font_12sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
-                app:layout_constraintTop_toTopOf="@+id/guideline"  />
+                app:layout_constraintTop_toTopOf="@+id/guideline" />
 
 
             <TextView
@@ -69,7 +85,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Piyush Pradeepkumar"
                 android:textAppearance="@style/regular_font_20sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintEnd_toStartOf="@+id/card_favourite"
@@ -78,10 +93,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_location" />
 
 
-
             <TextView
                 android:id="@+id/tv_sign"
-                style="@style/montserrat_light_font"
+                style="@style/montserrat_regular_font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -90,8 +104,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
 
-
             <TextView
+                android:id="@+id/textView6"
                 style="@style/montserrat_light_font"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -102,60 +116,37 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
                 app:layout_constraintTop_toBottomOf="@+id/tv_sign" />
 
-            <androidx.cardview.widget.CardView
+
+            <com.thelumiereguy.matchesapp.ui.views.CustomImageView
                 android:id="@+id/card_favourite"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_gravity="end"
                 android:layout_marginTop="16dp"
-                android:alpha="0.7"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                app:cardBackgroundColor="@color/colorGrey"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="16dp"
+                android:elevation="4dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toTopOf="@+id/guideline">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/ic_favourite" />
+                app:layout_constraintTop_toTopOf="@+id/guideline" />
 
 
-            </androidx.cardview.widget.CardView>
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/card_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Close"
+                android:textColor="@color/colorWhite"
+                android:visibility="invisible"
+                app:backgroundTint="@color/colorPrimary"
+                app:elevation="12dp"
+                app:icon="@drawable/oval_background_close"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_close"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:alpha="0.7"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                app:cardBackgroundColor="@color/colorGrey"
-                app:cardCornerRadius="24dp"
-                android:layout_gravity="end"
-                app:cardElevation="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/ic_close_black_24dp" />
-
-
-            </androidx.cardview.widget.CardView>
-
-
-    </FrameLayout>
-
+    </ScrollView>
 
 </layout>

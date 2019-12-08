@@ -8,7 +8,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.thelumiereguy.matchesapp"
-        minSdkVersion 22
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -36,7 +36,13 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            pseudoLocalesEnabled false
+            zipAlignEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -62,10 +68,6 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.25.2'
     kapt 'com.google.dagger:dagger-compiler:2.25.2'
 
-//    implementation "org.koin:koin-android:2.0.1"
-//    implementation "org.koin:koin-androidx-viewmodel:2.0.1"
-//    implementation "org.koin:koin-androidx-ext:2.0.1"
-
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
@@ -75,18 +77,18 @@ dependencies {
     //Material
     implementation 'com.google.android.material:material:1.2.0-alpha02'
 
-    //Leak Canary
-//    implementation 'com.squareup.leakcanary:leakcanary-android:2.0'
+//    Leak Canary
+    implementation 'com.squareup.leakcanary:leakcanary-android:2.0'
 
     //Coil
     implementation 'io.coil-kt:coil:0.8.0'
 
-
+    implementation 'com.github.Pradyuman7:ChocoBar:V1.0'
 
     // optional - Test helpers for LiveData
     testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
 
-    implementation "com.yuyakaido.android:card-stack-view:2.3.4"
+//    implementation "com.yuyakaido.android:card-stack-view:2.3.4"
 
     //Room
     implementation 'androidx.room:room-runtime:2.2.2'

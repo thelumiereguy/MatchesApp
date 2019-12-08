@@ -6,6 +6,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
+import java.lang.StringBuilder
 
 data class UsersList constructor(
     @SerializedName("info")
@@ -54,7 +55,22 @@ data class UsersList constructor(
         var status: String?,
         var favourite: Boolean
 
-    ):Parcelable {
+    ) : Parcelable {
+
+
+        fun getFullName(): String {
+            return StringBuilder().append(name.first)
+                .append(" ")
+                .append(name.last)
+                .toString()
+        }
+
+        fun getFullAddress(): String {
+            return StringBuilder().append(location.city)
+                .append(", ")
+                .append(location.country)
+                .toString()
+        }
 
         @Parcelize
         data class Dob(
@@ -62,7 +78,7 @@ data class UsersList constructor(
             val age: Int,
             @SerializedName("date")
             val date: String
-        ):Parcelable
+        ) : Parcelable
 
 
         @Parcelize
@@ -71,7 +87,7 @@ data class UsersList constructor(
             val name: String,
             @SerializedName("value")
             val value: String?
-        ):Parcelable
+        ) : Parcelable
 
         @Parcelize
         data class Location(
@@ -89,7 +105,7 @@ data class UsersList constructor(
             val street: Street,
             @SerializedName("timezone")
             val timezone: Timezone
-        ):Parcelable {
+        ) : Parcelable {
 
             @Parcelize
             data class Coordinates(
@@ -97,7 +113,7 @@ data class UsersList constructor(
                 val latitude: String,
                 @SerializedName("longitude")
                 val longitude: String
-            ):Parcelable
+            ) : Parcelable
 
             @Parcelize
             data class Street(
@@ -105,7 +121,7 @@ data class UsersList constructor(
                 val name: String,
                 @SerializedName("number")
                 val number: Int
-            ):Parcelable
+            ) : Parcelable
 
             @Parcelize
             data class Timezone(
@@ -113,7 +129,7 @@ data class UsersList constructor(
                 val description: String,
                 @SerializedName("offset")
                 val offset: String
-            ):Parcelable
+            ) : Parcelable
         }
 
         @Parcelize
@@ -132,7 +148,7 @@ data class UsersList constructor(
             val username: String,
             @SerializedName("uuid")
             val uuid: String
-        ):Parcelable
+        ) : Parcelable
 
         @Parcelize
         data class Name(
@@ -142,7 +158,7 @@ data class UsersList constructor(
             val last: String,
             @SerializedName("title")
             val title: String
-        ):Parcelable
+        ) : Parcelable
 
         @Parcelize
         data class Picture(
@@ -152,7 +168,7 @@ data class UsersList constructor(
             val medium: String,
             @SerializedName("thumbnail")
             val thumbnail: String
-        ):Parcelable
+        ) : Parcelable
 
         @Parcelize
         data class Registered(
@@ -160,7 +176,7 @@ data class UsersList constructor(
             val age: Int,
             @SerializedName("date")
             val date: String
-        ):Parcelable
+        ) : Parcelable
 
     }
 }

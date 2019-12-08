@@ -45,6 +45,10 @@ class UserRepositoryImpl @Inject constructor(
         usersDao.updateUser(UsersEntity.mapFrom(user))
     }
 
+    override suspend fun logoutUser() {
+        usersDao.nukeDB()
+    }
+
     override suspend fun getFavourites(): UsersList {
         val usersList: List<UsersList.User> = usersDao.getAllFavourites().map {
             it.mapToUser()

@@ -2,12 +2,11 @@ package com.thelumiereguy.matchesapp.ui.fragments
 
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -21,6 +20,8 @@ import com.thelumiereguy.matchesapp.ui.base.BaseFragment
 import com.thelumiereguy.matchesapp.ui.viewmodels.MainViewModel
 import com.thelumiereguy.matchesapp.ui.viewmodels.factory.ViewModelFactory
 import com.thelumiereguy.matchesapp.utils.Constants
+import com.thelumiereguy.matchesapp.utils.Utils
+import com.thelumiereguy.matchesapp.utils.Utils.showRelevantSnack
 import com.thelumiereguy.matchesapp.utils.getClassTag
 import javax.inject.Inject
 
@@ -46,7 +47,7 @@ class HomeFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
 
         binding = DataBindingUtil.inflate(
             inflater,
@@ -66,7 +67,6 @@ class HomeFragment : BaseFragment() {
                 when (observable) {
                     is MainViewModel.HomeState.Ready -> {
                         hideProgressBar()
-                        updateScrollState()
                     }
                     is MainViewModel.HomeState.Error -> {
                         hideProgressBar()
@@ -75,12 +75,13 @@ class HomeFragment : BaseFragment() {
             }
         })
 
-        mainViewModel.userList.observe(
+        mainViewModel.getUserListLiveData().observe(
             viewLifecycleOwner,
             Observer {
-                Toast.makeText(requireContext(), it.results.size.toString(), Toast.LENGTH_LONG)
-                    .show()
-                inflateRecyclerAdapter(it)
+                if(it.results.isNotEmpty()){
+                    inflateRecyclerAdapter(it)
+                    updateScrollState()
+                }
             })
 
 
@@ -102,8 +103,11 @@ class HomeFragment : BaseFragment() {
 
     private fun updateScrollState() {
         mainViewModel.currentBrowsedPosition.let { position ->
-            if (position != 0) {
-                binding.rvUserList.setCurrentItem(position, false)
+            homeUserListAdapter.notifyItemChanged(position)
+            binding.rvUserList.setCurrentItem(position, false)
+            if (position == 0) {
+                val user = mainViewModel.getUserListLiveData().value
+                user?.let { setButtonVisibility(it.results[position]) }
             }
         }
     }
@@ -115,8 +119,7 @@ class HomeFragment : BaseFragment() {
                 adapter = homeUserListAdapter
             }
         }
-        homeUserListAdapter.usersList = userList
-        homeUserListAdapter.notifyDataSetChanged()
+        homeUserListAdapter.setUser(userList)
     }
 
     private fun initUIComponents() {
@@ -131,25 +134,43 @@ class HomeFragment : BaseFragment() {
 
     inner class ListenerImpl : View.OnClickListener, ViewPager2.OnPageChangeCallback() {
 
-        override fun onClick(v: View?) {
+        override fun onClick(v: View) {
             var position = binding.rvUserList.currentItem
-            v?.let { view ->
-                when (view.id) {
+            val user = mainViewModel.userList.value?.let { it.results[position] }
+            user?.let {
+                when (v.id) {
                     binding.btnAccept.id -> {
+                        homeUserListAdapter.setStatus(position, Constants.ACCEPTED)
                         mainViewModel.setStatus(position, Constants.ACCEPTED)
+                        showRelevantSnack(
+                            Utils.TYPE.ACCEPTED(user.getFullName()),
+                            binding.rootCoordinator
+                        )
+                        setButtonVisibility(user)
                         position++
                         jumpToNextUser(position)
+
                     }
 
                     binding.btnDecline.id -> {
                         mainViewModel.setStatus(position, Constants.DECLINED)
+                        homeUserListAdapter.setStatus(position, Constants.DECLINED)
+                        showRelevantSnack(
+                            Utils.TYPE.DECLINED(user.getFullName()),
+                            binding.rootCoordinator
+                        )
                         position++
+                        setButtonVisibility(user)
                         jumpToNextUser(position)
                     }
 
 
                     binding.btnFavourite.id -> {
                         mainViewModel.setFavourite(position)
+                        showRelevantSnack(
+                            Utils.TYPE.FAVOURITED(!user.favourite, user.getFullName()),
+                            binding.rootCoordinator
+                        )
                     }
                 }
             }
@@ -157,16 +178,25 @@ class HomeFragment : BaseFragment() {
 
         private fun jumpToNextUser(position: Int) {
             if (position < mainViewModel.userList.value!!.results.size) {
-                binding.rvUserList.setCurrentItem(position, true)
+                Handler().postDelayed({
+                    binding.rvUserList.setCurrentItem(position, true)
+                }, 500)
+
             }
         }
 
 
         override fun onPageSelected(position: Int) {
+            val user = mainViewModel.userList.value?.let { it.results[position] }
+            setButtonVisibility(user)
             mainViewModel.currentBrowsedPosition = position
             checkItemsLeft(position)
         }
+    }
 
+    private fun setButtonVisibility(user: UsersList.User?) {
+        binding.buttonGroup.visibility = if (user?.status == null) View.VISIBLE else View.INVISIBLE
+        binding.buttonGroup.requestLayout()
     }
 
     private fun checkItemsLeft(position: Int) {
@@ -189,5 +219,9 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.getFromDb()
+    }
 
 }

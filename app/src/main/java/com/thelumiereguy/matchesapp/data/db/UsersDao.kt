@@ -19,4 +19,6 @@ interface UsersDao {
     @Query("SELECT * from UsersEntity WHERE favourite = 1")
     suspend fun getAllFavourites(): List<UsersEntity>
 
+    @Query("DELETE FROM UsersEntity")
+    fun nukeDB()
 }

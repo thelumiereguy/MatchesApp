@@ -9,9 +9,7 @@ import com.thelumiereguy.matchesapp.R
 data class FragmentNavigationDetails @JvmOverloads constructor(
     val fragmentManager: FragmentManager,
     val fragmentObj: Fragment,
-    val addToBackStack: Boolean,
     val frameId: Int,
-    val sharedElements: ArrayMap<String, ImageView>? = null,
     val animationSet: CustomAnimationSet? = null
 
 )

@@ -8,6 +8,7 @@
         android:layout_margin="16dp"
         android:orientation="vertical"
         app:cardCornerRadius="@dimen/genreDataRowColumnItemTopBottomMargin"
+        android:animateLayoutChanges="true"
         app:cardElevation="6dp">
 
 
@@ -23,14 +24,27 @@
                 android:scaleType="centerCrop" />
 
             <ImageView
-                android:background="@drawable/black_gradient"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/black_gradient"
                 android:scaleType="centerCrop" />
 
 
         </FrameLayout>
 
+        <com.thelumiereguy.matchesapp.ui.views.CustomMaterialButton
+            android:id="@+id/card_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            style="@style/montserrat_regular_font"
+            android:textAlignment="center"
+            android:padding="8dp"
+            app:cornerRadius="8dp"
+            android:textColor="@color/colorWhite"
+            android:textAppearance="@style/regular_font_18sp"
+            android:layout_gravity="end|top"
+            android:layout_margin="16dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,9 +58,8 @@
                 style="@style/montserrat_regular_font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="random Text"
-                android:textColor="@color/colorWhite"
-                android:textAppearance="@style/regular_font_16sp" />
+                android:textAppearance="@style/regular_font_16sp"
+                android:textColor="@color/colorWhite" />
 
 
             <LinearLayout
@@ -57,35 +70,32 @@
 
                 <TextView
                     android:id="@+id/tv_name"
-                    android:textColor="@color/colorWhite"
                     style="@style/montserrat_bold_font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="random Text"
-                    android:textAppearance="@style/regular_font_20sp" />
+                    android:textAppearance="@style/regular_font_20sp"
+                    android:textColor="@color/colorWhite" />
 
                 <TextView
-                    android:layout_marginStart="4dp"
                     style="@style/montserrat_bold_font"
                     android:layout_width="wrap_content"
-                    android:textColor="@color/colorWhite"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:text=","
-                    android:textAppearance="@style/regular_font_20sp" />
+                    android:textAppearance="@style/regular_font_20sp"
+                    android:textColor="@color/colorWhite" />
 
 
                 <TextView
                     android:id="@+id/tv_age"
                     style="@style/montserrat_bold_font"
                     android:layout_width="wrap_content"
-                    android:textColor="@color/colorWhite"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/genreDataRowColumnItemTopBottomMargin"
-                    android:text="random Text"
-                    android:textAppearance="@style/regular_font_20sp" />
+                    android:textAppearance="@style/regular_font_20sp"
+                    android:textColor="@color/colorWhite" />
 
             </LinearLayout>
-
 
 
         </LinearLayout>

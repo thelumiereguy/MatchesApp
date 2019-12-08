@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/genreDataRowColumnItemTopBottomMargin"
+    android:background="#FEF5F8"
     tools:context=".ui.fragments.ProfileFragment">
 
     <com.google.android.material.card.MaterialCardView
@@ -44,25 +45,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Piyush Pradeepkumar"
+        android:text="Piyush Pradeepkumar, 23"
         android:textAppearance="@style/regular_font_18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <TextView
-        android:id="@+id/textView5"
-        style="@style/montserrat_light_font"
+        android:id="@+id/textView6"
+        style="@style/montserrat_regular_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="I'm an Android enthusiast and a Developer, in pursuit of Knowledge. My other hobbies include Photography, Singing and Playing Guitar"
+        android:text="Mumbai, India"
         android:textAlignment="center"
         android:textAppearance="@style/regular_font_18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/montserrat_light_font"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="I'm an Android enthusiast and a Developer, in pursuit of Knowledge. My other hobbies include Photography, Singing and Playing Guitar"
+        android:textAlignment="center"
+        android:textAppearance="@style/regular_font_14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

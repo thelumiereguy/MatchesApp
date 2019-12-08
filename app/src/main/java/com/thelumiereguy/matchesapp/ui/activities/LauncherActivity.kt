@@ -84,8 +84,8 @@ class LauncherActivity : BaseActivity() {
             FragmentNavigationDetails(
                 supportFragmentManager,
                 LoginFragment(),
-                false,
-                flFragmentContainer.id
+                flFragmentContainer.id,
+                animationSet = getTopBottomAnimation()
             )
         super.replaceFragment(navigationArgs)
     }
@@ -104,7 +104,6 @@ class LauncherActivity : BaseActivity() {
             FragmentNavigationDetails(
                 supportFragmentManager,
                 SplashFragment(),
-                false,
                 flFragmentContainer.id
             )
         super.replaceFragment(navigationArgs)
@@ -119,7 +118,6 @@ class LauncherActivity : BaseActivity() {
             FragmentNavigationDetails(
                 supportFragmentManager,
                 OnBoardingFragment(),
-                false,
                 flFragmentContainer.id,
                 animationSet = getTopBottomAnimation()
             )

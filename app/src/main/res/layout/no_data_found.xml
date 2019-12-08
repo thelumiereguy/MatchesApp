@@ -5,6 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:visibility="gone"
         android:id="@+id/cl_no_data_main"
+        android:background="#FEF5F8"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

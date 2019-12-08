@@ -63,7 +63,18 @@ class SplashFragment : BaseFragment() {
         alpha2.duration = 600
         animSet.play(alpha2).before(alpha1).with(move)
         animSet.start()
+        initSubtitleAnimation()
         animSet.addListener(AnimatorListenerImpl())
+    }
+
+
+    fun initSubtitleAnimation(){
+        val alpha1 = ObjectAnimator.ofFloat(binding.subTitle, "alpha", 0.5f)
+        alpha1.duration = 400
+        val alpha2 = ObjectAnimator.ofFloat(binding.subTitle, "alpha", 0f)
+        alpha2.duration = 600
+        animSet.play(alpha2).before(alpha1)
+        animSet.start()
     }
 
     private fun showLoading() {
@@ -97,7 +108,6 @@ class SplashFragment : BaseFragment() {
             } else {
                 launcherViewModel.showOnBoarding()
             }
-
         }, 2000)
     }
 

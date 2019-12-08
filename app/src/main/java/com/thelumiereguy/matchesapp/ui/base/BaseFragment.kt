@@ -2,17 +2,21 @@ package com.thelumiereguy.matchesapp.ui.base
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import com.thelumiereguy.matchesapp.R
 import com.thelumiereguy.matchesapp.di.components.ActivityComponent
 import com.thelumiereguy.matchesapp.di.components.DaggerActivityComponent
 import com.thelumiereguy.matchesapp.di.modules.ContextModule
+import com.thelumiereguy.matchesapp.domain.enitity.ErrorModel
 import com.thelumiereguy.matchesapp.domain.enitity.UsersList
 import com.thelumiereguy.matchesapp.ui.activities.UserDetailActivity
 import com.thelumiereguy.matchesapp.ui.adapters.adapterclicklisteners.ProfileClickListener
+import com.thelumiereguy.matchesapp.utils.getClassTag
 import java.lang.Exception
 
 
@@ -55,6 +59,6 @@ abstract class BaseFragment : Fragment(), ProfileClickListener {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
+
 }

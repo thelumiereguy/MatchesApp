@@ -12,4 +12,7 @@ interface UserRepository {
 
 
     suspend fun updateUser(user: UsersList.User)
+
+
+    suspend fun logoutUser()
 }

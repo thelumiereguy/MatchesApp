@@ -125,6 +125,13 @@ class FavouritesFragment : BaseFragment() {
 
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        favouritesViewModel.getFavourites()
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         if (::favouritesUserListAdapter.isInitialized) {
@@ -132,7 +139,7 @@ class FavouritesFragment : BaseFragment() {
         }
     }
 
-    fun showList(){
+    private fun showList(){
         noDataLayout.visibility = View.GONE
         recyclerView.visibility = View.VISIBLE
     }

@@ -31,20 +31,7 @@ class MainViewModel @Inject constructor(
     var currentBrowsedPosition: Int = 0
 
     init {
-
-        getAllUsersUseCase.isInternetConnected = false
-
-        getAllUsersUseCase.execute {
-            onComplete {
-                userList.postValue(it)
-                homeState.postValue(HomeState.Ready)
-            }
-
-            onError { throwable ->
-                error.value = throwable
-                homeState.postValue(HomeState.Error)
-            }
-        }
+        getFromDb()
     }
 
 
@@ -53,14 +40,22 @@ class MainViewModel @Inject constructor(
             with(it.results[index]) {
                 this.status = status
                 updateUserUseCase.userToUpdate = this
+                updateUser()
             }
         }
 
     }
 
 
+    fun getUserListLiveData() : LiveData<UsersList> = userList
+
     fun getState(): LiveData<HomeState> = homeState
 
+
+    fun setFavourite(user: UsersList.User) {
+        updateUserUseCase.userToUpdate = user
+        updateUser()
+    }
 
     fun setFavourite(index: Int) {
         userList.value?.let {
@@ -121,6 +116,32 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+
+
+    fun getFromDb(){
+        getAllUsersUseCase.isInternetConnected = false
+
+        getAllUsersUseCase.execute {
+            onComplete {
+                userList.postValue(it)
+                homeState.postValue(HomeState.Ready)
+            }
+
+            onError { throwable ->
+                error.value = throwable
+                homeState.postValue(HomeState.Error)
+            }
+        }
+    }
+
+
+    override fun onCleared() {
+        super.onCleared()
+        getAllUsersUseCase.unsubscribe()
+        insertAllUsersUseCase.unsubscribe()
+        updateUserUseCase.unsubscribe()
+    }
+
 
     sealed class HomeState {
         object LoadingState : HomeState()

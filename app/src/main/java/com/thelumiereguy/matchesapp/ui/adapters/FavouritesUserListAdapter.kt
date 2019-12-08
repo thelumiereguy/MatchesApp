@@ -12,6 +12,7 @@ import com.thelumiereguy.matchesapp.R
 import com.thelumiereguy.matchesapp.databinding.FavouritesUserRowItemBinding
 import com.thelumiereguy.matchesapp.databinding.HomeUserPageItemBinding
 import com.thelumiereguy.matchesapp.domain.enitity.UsersList
+import com.thelumiereguy.matchesapp.ui.adapters.adapterclicklisteners.CustomOnTouchListenerImpl
 import com.thelumiereguy.matchesapp.ui.adapters.adapterclicklisteners.ProfileClickListener
 
 
@@ -40,9 +41,11 @@ class FavouritesUserListAdapter constructor(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val content: UsersList.User = favouritesUserList.results[position]
 
-        holder.binding.root.setOnClickListener {
+        holder.binding.llRoot.setOnClickListener {
             clickListener?.onClick(content,holder.binding.ivUserImage)
         }
+
+        holder.binding.llRoot.setOnTouchListener(CustomOnTouchListenerImpl(-0.05f))
 
         holder.binding.ivUserImage.load(content.picture.large) {
             crossfade(true)
@@ -51,9 +54,10 @@ class FavouritesUserListAdapter constructor(
             transformations(BlurTransformation(holder.binding.root.context, 2f))
             transformations(RoundedCornersTransformation())
         }
-        holder.binding.tvName.text = content.name.first + " " + content.name.last
+        holder.binding.tvName.text = content.getFullName()
         holder.binding.tvAge.text = content.dob.age.toString()
-        holder.binding.tvLocation.text = content.location.city + ", " + content.location.country
+        holder.binding.tvLocation.text = content.getFullAddress()
+
     }
 
     fun onDestroy() {
