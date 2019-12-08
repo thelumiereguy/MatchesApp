@@ -78,7 +78,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha02'
 
 //    Leak Canary
-    implementation 'com.squareup.leakcanary:leakcanary-android:2.0'
+//    implementation 'com.squareup.leakcanary:leakcanary-android:2.0'
 
     //Coil
     implementation 'io.coil-kt:coil:0.8.0'
@@ -88,10 +88,30 @@ dependencies {
     // optional - Test helpers for LiveData
     testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
 
-//    implementation "com.yuyakaido.android:card-stack-view:2.3.4"
-
     //Room
     implementation 'androidx.room:room-runtime:2.2.2'
     kapt 'androidx.room:room-compiler:2.2.2'
     implementation 'androidx.room:room-ktx:2.2.2'
+
+
+
+
+    testImplementation 'junit:junit:4.12'
+
+    // Android runner and rules support
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+
+    // Espresso support
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    // add this for intent mocking support
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
+
+
+
+
+
 }

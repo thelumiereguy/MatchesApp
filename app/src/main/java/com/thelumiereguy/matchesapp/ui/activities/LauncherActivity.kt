@@ -20,6 +20,7 @@ import com.thelumiereguy.matchesapp.ui.ui_models.FragmentNavigationDetails
 import com.thelumiereguy.matchesapp.utils.getClassTag
 import com.thelumiereguy.matchesapp.utils.getMethodTag
 import java.lang.StringBuilder
+import java.net.ConnectException
 import java.net.UnknownHostException
 import javax.inject.Inject
 
@@ -70,6 +71,10 @@ class LauncherActivity : BaseActivity() {
             observable?.let {
                 when (it.exception) {
                     is UnknownHostException -> {
+
+                    }
+                    is ConnectException -> {
+
                     }
                     else -> {
                         showErrorSnack(it)

@@ -3,6 +3,9 @@
     <color name="colorPrimary">#fd5068</color>
     <color name="colorPrimaryDark">#c4063e</color>
     <color name="colorPrimaryLight">#f5a6a2</color>
+
+
+    <color name="backgroundLight">#FEF5F8</color>
     <color name="colorAccent">#fd5068</color>
 
     <color name="colorWhite">#fff</color>

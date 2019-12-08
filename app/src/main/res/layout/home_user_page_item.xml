@@ -26,8 +26,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/black_gradient"
-                android:scaleType="centerCrop" />
+                android:background="@drawable/black_gradient" />
 
 
         </FrameLayout>
@@ -40,6 +39,7 @@
             style="@style/montserrat_regular_font"
             android:textAlignment="center"
             android:padding="8dp"
+            android:enabled="false"
             app:cornerRadius="8dp"
             android:textColor="@color/colorWhite"
             android:textAppearance="@style/regular_font_18sp"

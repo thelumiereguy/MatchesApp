@@ -48,8 +48,8 @@ class HomeUserListAdapter constructor(
         holder.binding.cardStatus.setStatus(content.status)
         holder.binding.ivUserImage.load(content.picture.large) {
             crossfade(true)
-            placeholder(R.drawable.ic_heart)
-            error(R.drawable.ic_heart)
+            placeholder(R.drawable.ic_user)
+            error(R.drawable.ic_user)
         }
         holder.binding.tvName.text = content.getFullName()
         holder.binding.tvAge.text = content.dob.age.toString()

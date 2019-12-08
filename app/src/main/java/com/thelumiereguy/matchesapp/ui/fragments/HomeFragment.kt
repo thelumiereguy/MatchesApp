@@ -56,7 +56,6 @@ class HomeFragment : BaseFragment() {
 
         initUIComponents()
         startObserving()
-
         return binding.root
     }
 
@@ -70,6 +69,7 @@ class HomeFragment : BaseFragment() {
                     }
                     is MainViewModel.HomeState.Error -> {
                         hideProgressBar()
+                        handleError()
                     }
                 }
             }
@@ -78,8 +78,9 @@ class HomeFragment : BaseFragment() {
         mainViewModel.getUserListLiveData().observe(
             viewLifecycleOwner,
             Observer {
-                if(it.results.isNotEmpty()){
+                if (it.results.isNotEmpty()) {
                     inflateRecyclerAdapter(it)
+                    binding.btnGroup.visibility = View.VISIBLE
                     updateScrollState()
                 }
             })
@@ -93,7 +94,7 @@ class HomeFragment : BaseFragment() {
                     .append(it.message)
                 Log.w(getClassTag(), errorMessage.toString())
                 Snackbar.make(
-                    binding.root.findViewById(android.R.id.content),
+                    binding.root,
                     errorMessage.toString(),
                     Snackbar.LENGTH_LONG
                 ).show()
@@ -136,7 +137,9 @@ class HomeFragment : BaseFragment() {
 
         override fun onClick(v: View) {
             var position = binding.rvUserList.currentItem
-            val user = mainViewModel.userList.value?.let { it.results[position] }
+            val user = mainViewModel.userList.value?.let {
+                it.results[position]
+            }
             user?.let {
                 when (v.id) {
                     binding.btnAccept.id -> {
@@ -216,6 +219,17 @@ class HomeFragment : BaseFragment() {
         super.onDestroy()
         if (::homeUserListAdapter.isInitialized) {
             homeUserListAdapter.onDestroy()
+        }
+    }
+
+    private fun handleError() {
+        val user = mainViewModel.userList.value
+        user?.let {
+            if(it.results.isEmpty()){
+                binding.rvUserList.visibility = View.GONE
+                binding.btnGroup.visibility = View.GONE
+                binding.llNoInternet.clNoDataMain.visibility = View.VISIBLE
+            }
         }
     }
 

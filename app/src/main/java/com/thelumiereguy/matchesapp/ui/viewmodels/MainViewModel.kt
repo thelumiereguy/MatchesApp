@@ -84,7 +84,8 @@ class MainViewModel @Inject constructor(
 
         getAllUsersUseCase.execute {
             onComplete { newList ->
-                appendToList(newList)
+                if(newList.results.isNotEmpty())
+                    appendToList(newList)
             }
 
             onError { throwable ->
@@ -123,6 +124,11 @@ class MainViewModel @Inject constructor(
 
         getAllUsersUseCase.execute {
             onComplete {
+                if(it.results.isEmpty()){
+                    homeState.postValue(HomeState.Error)
+                    getFromRemote()
+                    return@onComplete
+                }
                 userList.postValue(it)
                 homeState.postValue(HomeState.Ready)
             }
@@ -130,9 +136,25 @@ class MainViewModel @Inject constructor(
             onError { throwable ->
                 error.value = throwable
                 homeState.postValue(HomeState.Error)
+                getFromRemote()
             }
         }
     }
+
+
+    private fun getFromRemote(){
+        getAllUsersUseCase.isInternetConnected = true
+        getAllUsersUseCase.execute {
+            onComplete {
+                insertAllUsers(it)
+            }
+            onError { throwable ->
+                error.value = throwable
+                homeState.postValue(HomeState.Error)
+            }
+        }
+    }
+
 
 
     override fun onCleared() {

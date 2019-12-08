@@ -12,9 +12,9 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="#FEF5F8"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#FEF5F8">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/rv_user_list"
@@ -35,13 +35,14 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_group"
                 android:layout_width="match_parent"
+                android:visibility="invisible"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:baselineAligned="false"
                 android:animateLayoutChanges="true"
+                android:baselineAligned="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +51,7 @@
 
                 <androidx.constraintlayout.widget.Group
                     android:id="@+id/button_group"
+                    android:visibility="invisible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:constraint_referenced_ids="btn_accept,btn_decline" />
@@ -61,6 +63,7 @@
                     android:contentDescription="Decline"
                     android:padding="8dp"
                     android:src="@drawable/profile_remove_photo"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_favourite"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -87,6 +90,7 @@
                     android:contentDescription="Accept"
                     android:padding="8dp"
                     android:src="@drawable/oval_background_accept"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -108,7 +112,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
+            <include
+                android:id="@+id/ll_no_internet"
+                layout="@layout/layout_no_internet"
+                android:visibility="gone" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

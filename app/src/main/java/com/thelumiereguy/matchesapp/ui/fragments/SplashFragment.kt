@@ -68,7 +68,7 @@ class SplashFragment : BaseFragment() {
     }
 
 
-    fun initSubtitleAnimation(){
+    private fun initSubtitleAnimation(){
         val alpha1 = ObjectAnimator.ofFloat(binding.subTitle, "alpha", 0.5f)
         alpha1.duration = 400
         val alpha2 = ObjectAnimator.ofFloat(binding.subTitle, "alpha", 0f)

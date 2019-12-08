@@ -49,8 +49,8 @@ class FavouritesUserListAdapter constructor(
 
         holder.binding.ivUserImage.load(content.picture.large) {
             crossfade(true)
-            placeholder(R.drawable.ic_heart)
-            error(R.drawable.ic_heart)
+            placeholder(R.drawable.ic_user)
+            error(R.drawable.ic_user)
             transformations(BlurTransformation(holder.binding.root.context, 2f))
             transformations(RoundedCornersTransformation())
         }

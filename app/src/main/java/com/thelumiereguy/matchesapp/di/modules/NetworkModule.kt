@@ -23,7 +23,7 @@ import java.lang.reflect.Type
 import javax.inject.Singleton
 
 @Module
-object NetworkModule {
+open class NetworkModule {
 
     @Provides
     @ActivityScope

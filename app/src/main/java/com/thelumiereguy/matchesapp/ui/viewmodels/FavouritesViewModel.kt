@@ -30,6 +30,7 @@ class FavouritesViewModel @Inject constructor(
     }
 
 
+
     fun getUserListLiveData(): LiveData<UsersList> {
         getFavourites()
         return userList

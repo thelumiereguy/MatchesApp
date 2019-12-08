@@ -57,7 +57,11 @@ class UserDetailActivity : BaseActivity() {
                 binding.tvSign.text = "Dob : " + this.dob.date.formatDate()
                 binding.ivUserImage.load(
                     this.picture.large
-                )
+                ) {
+                    crossfade(true)
+                    placeholder(R.drawable.ic_user)
+                    error(R.drawable.ic_user)
+                }
             }
         }
         Handler().postDelayed({

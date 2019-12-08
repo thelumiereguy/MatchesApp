@@ -11,7 +11,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-object DataModule {
+class DataModule {
 
     @Provides
     fun provideRoomDatabase(application: Application): UsersDb {
