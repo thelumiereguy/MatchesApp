@@ -1,7 +1,5 @@
 package com.thelumiereguy.matchesapp.ui.ui_models
 
-import android.widget.ImageView
-import androidx.collection.ArrayMap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.thelumiereguy.matchesapp.R

@@ -5,7 +5,7 @@
     tools:context=".ui.activities.HomeActivity">
 
     <LinearLayout
-        android:background="#FEF5F8"
+        android:background="@color/backgroundLight"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -14,8 +14,8 @@
             android:id="@+id/home_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="8dp"
-            app:titleMarginTop="8dp">
+            android:layout_marginTop="@dimen/login_button_margin_top"
+            app:titleMarginTop="@dimen/login_button_margin_top">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -28,9 +28,9 @@
                     android:id="@+id/ib_settings"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/onboarding_button_margins"
                     android:scaleType="fitXY"
-                    android:padding="8dp"
+                    android:padding="@dimen/home_page_elevation"
                     android:src="@drawable/ic_logout"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="1:1"
@@ -68,7 +68,7 @@
             android:id="@+id/bnv_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:backgroundTint="#FEF5F8"
+            app:backgroundTint="@color/backgroundLight"
             app:itemHorizontalTranslationEnabled="true"
             app:itemRippleColor="@android:color/transparent"
             app:labelVisibilityMode="selected"

@@ -24,6 +24,7 @@ class UserDetailActivity : BaseActivity() {
     private lateinit var user: UsersList.User
     private val clickListenerIml = ClickListenerIml()
 
+    private val handler = Handler()
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -45,11 +46,16 @@ class UserDetailActivity : BaseActivity() {
         initUI()
     }
 
+    /**
+     * Null checks the Intent Extras
+     *
+     * and then sets the data to the UI
+     */
     private fun initUI() {
         intent.extras?.let {
             user = intent.getParcelableExtra("user") as UsersList.User
             with(user) {
-                setFavouriteIcon(user)
+                setFavouriteIcon(user.favourite)
                 binding.tvName.text = StringBuilder().append(this.getFullName())
                     .append(", ")
                     .append(this.dob.age.toString())
@@ -64,7 +70,7 @@ class UserDetailActivity : BaseActivity() {
                 }
             }
         }
-        Handler().postDelayed({
+        handler.postDelayed({
             binding.cardClose.show()
         }, 500)
 
@@ -72,8 +78,14 @@ class UserDetailActivity : BaseActivity() {
         binding.cardClose.setOnClickListener(clickListenerIml)
     }
 
-    private fun setFavouriteIcon(user: UsersList.User) {
-        binding.cardFavourite.setFavourite(user.favourite)
+
+    /**
+     * This calls the custom view's function to change the properties of the view
+     * implicitly
+     *
+     */
+    private fun setFavouriteIcon(favourite: Boolean?) {
+        binding.cardFavourite.setFavourite(favourite)
     }
 
     inner class ClickListenerIml : View.OnClickListener {
@@ -96,5 +108,10 @@ class UserDetailActivity : BaseActivity() {
             }
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        handler.removeCallbacksAndMessages(null)
     }
 }

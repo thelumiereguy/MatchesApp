@@ -30,6 +30,16 @@ abstract class BaseActivity : AppCompatActivity() {
         } else null
     }
 
+
+    /**
+     * Function which can be called from any activity, to replace a fragment
+     *
+     * You can customise the containerId, Custom Animations.
+     * The above options are wrapped in data class
+     * @see FragmentNavigationDetails
+     *
+     * @param navigationArgs The argument which contains all the customisable options
+     */
     fun replaceFragment(
         navigationArgs: FragmentNavigationDetails
     ) {
@@ -43,19 +53,6 @@ abstract class BaseActivity : AppCompatActivity() {
             )
         }
         transaction.replace(navigationArgs.frameId, navigationArgs.fragmentObj).commit()
-    }
-
-    fun showErrorSnack(errorModel: ErrorModel) {
-        val errorMessage = StringBuilder()
-            .append(errorModel.errorCode)
-            .append(" ")
-            .append(errorModel.message)
-        Log.w(getClassTag(), errorMessage.toString())
-        Snackbar.make(
-            findViewById(android.R.id.content),
-            errorMessage.toString(),
-            Snackbar.LENGTH_LONG
-        ).show()
     }
 
 }

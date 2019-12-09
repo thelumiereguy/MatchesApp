@@ -11,4 +11,20 @@
     <string name="title_profile">Profile</string>
     <string name="user_image_transition">user_image_transition</string>
     <string name="no_data">No Favourites</string>
+    <string name="moto">Welcome to world\'s No. 1 Matchmaking Service</string>
+    <string name="login_title">Discover new and interesting people nearby</string>
+    <string name="create_account">Create your account</string>
+    <string name="already_account">Already have an account?</string>
+    <string name="log_in">Log in</string>
+    <string name="text_decline">Decline</string>
+    <string name="text_favourite">Favourite</string>
+    <string name="text_accept">Accept</string>
+    <string name="demo_user_description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="close">Close</string>
+    <string name="name_age">Piyush Pradeepkumar, 23</string>
+    <string name="location">Mumbai, India</string>
+    <string name="my_description">I\'m an Android enthusiast and a Developer, in pursuit of Knowledge. My other hobbies include Photography, Singing and Playing Guitar</string>
+    <string name="no_internet">No Internet</string>
+    <string name="no_internet_description">You dont seem to be connected to the internet</string>
+    <string name="no_data_description">Please Favourite a user and they will show up here</string>
 </resources>

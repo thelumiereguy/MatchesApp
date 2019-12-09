@@ -57,8 +57,22 @@ class FavouritesFragment : BaseFragment() {
         return view
     }
 
+    private fun initUIComponents(view: View) {
+        super.getActivityComponent()?.inject(this)
+        recyclerView = view.findViewById(R.id.rv_favourites_list)
+        contentProgressBar = view.findViewById(R.id.progressBar)
+        noDataLayout = view.findViewById(R.id.l_no_data)
+
+    }
+
 
     private fun startObserving() {
+
+        /**
+         * On Success, only hides the progress bar
+         *
+         * On Error, hides the list and shows error message
+         */
         favouritesViewModel.getState().observe(viewLifecycleOwner, Observer { observable ->
             observable?.let {
                 when (observable) {
@@ -75,6 +89,12 @@ class FavouritesFragment : BaseFragment() {
             }
         })
 
+
+        /**
+         * Checks if list is not empty
+         *
+         * Then handles it's visibility accordingly
+         */
         favouritesViewModel.getUserListLiveData().observe(
             viewLifecycleOwner,
             Observer {
@@ -100,6 +120,13 @@ class FavouritesFragment : BaseFragment() {
 
     }
 
+    /**
+     * if being called for the first time
+     *
+     * -> the adapter  will be initialised and set to the recylcerView
+     *
+     * else -> the list will updated
+     */
     private fun inflateRecyclerAdapter(userList: UsersList) {
         if (!::favouritesUserListAdapter.isInitialized) {
             favouritesUserListAdapter = FavouritesUserListAdapter(userList, this)
@@ -117,21 +144,19 @@ class FavouritesFragment : BaseFragment() {
     }
 
 
-    private fun initUIComponents(view: View) {
-        super.getActivityComponent()?.inject(this)
-        recyclerView = view.findViewById(R.id.rv_favourites_list)
-        contentProgressBar = view.findViewById(R.id.progressBar)
-        noDataLayout = view.findViewById(R.id.l_no_data)
-
-    }
-
-
+    /**
+     * Gets the latest data from Room, when coming back to this screen
+     */
     override fun onResume() {
         super.onResume()
         favouritesViewModel.getFavourites()
     }
 
 
+    /**
+     * Clears the reference of the ClickListener sent to the Adapter
+     * to avoid memory leaks
+     */
     override fun onDestroy() {
         super.onDestroy()
         if (::favouritesUserListAdapter.isInitialized) {
@@ -139,12 +164,12 @@ class FavouritesFragment : BaseFragment() {
         }
     }
 
-    private fun showList(){
+    private fun showList() {
         noDataLayout.visibility = View.GONE
         recyclerView.visibility = View.VISIBLE
     }
 
-    private fun hideList(){
+    private fun hideList() {
         noDataLayout.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
     }

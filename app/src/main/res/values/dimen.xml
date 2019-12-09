@@ -3,20 +3,13 @@
     <dimen name="pageMargin">30dp</dimen>
     <dimen name="offset">70dp</dimen>
 
-    //GenreData Screen Channels
-    <dimen name="channelDataColumnItemStartEndMargin">16dp</dimen>
-    <dimen name="channelDataColumnItemTopBottomMargin">4dp</dimen>
+
+    <dimen name="textView_horizontal_margins">32dp</dimen>
+
+    <dimen name="splash_textView_horizontal_margins">32dp</dimen>
 
 
-    <dimen name="details_header_trailer_button_height">48dp</dimen>
-    <dimen name="details_header_section_additional_height">24dp</dimen>
-    <dimen name="details_header_trailer_button_background_height">40dp</dimen>
-
-    //GenreData Screen Genres
-    <dimen name="genreDataRowItemStartEndMargin">8dp</dimen>
-    <dimen name="genreDataRowColumnItemTopBottomMargin">16dp</dimen>
 
 
-    //PlayerContainerHeightChannelDetail
-    <dimen name="channelDetailPlayerHeight">200dp</dimen>
+
 </resources>

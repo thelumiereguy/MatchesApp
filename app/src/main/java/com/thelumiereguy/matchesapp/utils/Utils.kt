@@ -66,6 +66,9 @@ object Utils {
     }
 
 
+    /**
+     * Shows a snackbar depending on the type being sent
+     */
     fun showRelevantSnack(type: TYPE,view: View) {
         val defaultString = " has been "
         when (type) {

@@ -35,6 +35,10 @@ class MainViewModel @Inject constructor(
     }
 
 
+    /**
+     * Updates the properties of a user in the list
+     * and also in the DB
+     */
     fun setStatus(index: Int, status: String) {
         userList.value?.let {
             with(it.results[index]) {
@@ -68,17 +72,15 @@ class MainViewModel @Inject constructor(
 
     private fun updateUser() {
         updateUserUseCase.execute {
-            onComplete {
-                Log.d(getClassTag(), " Inserted ")
-            }
-
-            onError { throwable ->
+        onError { throwable ->
                 error.value = throwable
-//                    homeState.postValue(HomeState.Error)
             }
         }
     }
 
+    /**
+     * Gets new list of users
+     */
     fun getMoreItems() {
         getAllUsersUseCase.isInternetConnected = true
 
@@ -119,9 +121,13 @@ class MainViewModel @Inject constructor(
     }
 
 
+    /**
+     * Gets the list from DB,
+     * if by any case, the list is empty, new data is fetched from the API
+     *
+     */
     fun getFromDb(){
         getAllUsersUseCase.isInternetConnected = false
-
         getAllUsersUseCase.execute {
             onComplete {
                 if(it.results.isEmpty()){

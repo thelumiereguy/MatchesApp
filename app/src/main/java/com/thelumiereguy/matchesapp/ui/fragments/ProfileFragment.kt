@@ -9,9 +9,6 @@ import android.view.ViewGroup
 
 import com.thelumiereguy.matchesapp.R
 
-/**
- * A simple [Fragment] subclass.
- */
 class ProfileFragment : Fragment() {
 
     override fun onCreateView(

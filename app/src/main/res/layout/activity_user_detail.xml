@@ -6,7 +6,7 @@
 
 
     <ScrollView
-        android:background="#FEF5F8"
+        android:background="@color/backgroundLight"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -70,9 +70,9 @@
                 style="@style/montserrat_light_font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/onboarding_button_margins"
                 android:drawableStart="@drawable/ic_location_new"
-                android:drawablePadding="@dimen/genreDataRowItemStartEndMargin"
+                android:drawablePadding="@dimen/login_button_margin_top"
                 android:gravity="center"
                 android:textAppearance="@style/regular_font_12sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
@@ -84,7 +84,7 @@
                 style="@style/montserrat_bold_font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/login_button_margin_top"
                 android:textAppearance="@style/regular_font_20sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintEnd_toStartOf="@+id/card_favourite"
@@ -98,7 +98,7 @@
                 style="@style/montserrat_regular_font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/login_button_margin_top"
                 android:textAppearance="@style/regular_font_14sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
                 app:layout_constraintTop_toBottomOf="@+id/tv_name" />
@@ -109,8 +109,9 @@
                 style="@style/montserrat_light_font"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                android:layout_marginBottom="@dimen/onboarding_button_margins"
+                android:layout_marginTop="@dimen/login_button_margin_top"
+                android:text="@string/demo_user_description"
                 android:textAppearance="@style/regular_font_14sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
@@ -122,8 +123,8 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_gravity="end"
-                android:layout_marginTop="16dp"
-                android:elevation="4dp"
+                android:layout_marginTop="@dimen/onboarding_button_margins"
+                android:elevation="@dimen/home_page_corner_radius"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="@+id/guideline" />
@@ -133,16 +134,17 @@
                 android:id="@+id/card_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="Close"
+                android:layout_marginBottom="@dimen/onboarding_button_margins"
+                android:text="@string/close"
                 android:textColor="@color/colorWhite"
                 android:visibility="invisible"
                 app:backgroundTint="@color/colorPrimary"
-                app:elevation="12dp"
+                app:elevation="@dimen/login_button_margin_top"
                 app:icon="@drawable/oval_background_close"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,8 +49,24 @@ class LauncherActivity : BaseActivity() {
             showSplashFragment()
     }
 
+
+    private fun initUIComponents() {
+        super.getActivityComponent()?.inject(this)
+        window.allowEnterTransitionOverlap = false
+        window.allowReturnTransitionOverlap = false
+        flFragmentContainer = findViewById(R.id.fl_launcher_fragment_container)
+    }
+
+
+
     private fun startObservingState() {
 
+        /**
+         * Starts observing LiveData for Navigation
+         *
+         * The type of LiveData is a sealed class, so
+         * the when statement is exhaustive
+         */
         launcherViewModel.getState().observe(this@LauncherActivity, Observer { observable ->
             observable?.let {
                 when (it) {
@@ -77,7 +93,11 @@ class LauncherActivity : BaseActivity() {
 
                     }
                     else -> {
-                        showErrorSnack(it)
+                        val errorMessage = StringBuilder()
+                            .append(it.errorCode)
+                            .append(" ")
+                            .append(it.message)
+                        Log.w(getClassTag(), errorMessage.toString())
                     }
                 }
             }
@@ -93,14 +113,6 @@ class LauncherActivity : BaseActivity() {
                 animationSet = getTopBottomAnimation()
             )
         super.replaceFragment(navigationArgs)
-    }
-
-
-    private fun initUIComponents() {
-        super.getActivityComponent()?.inject(this)
-        window.allowEnterTransitionOverlap = false
-        window.allowReturnTransitionOverlap = false
-        flFragmentContainer = findViewById(R.id.fl_launcher_fragment_container)
     }
 
 

@@ -7,6 +7,13 @@ import dagger.Module
 
 @Module
 abstract class PreferencesHelperBuilder {
+
+
+    /**
+     * Binds the implementation of
+     * @see PreferencesHelper through PreferencesHelperImpl
+     *
+     */
     @Binds
     abstract fun bindsPreferencesHelper(preferencesHelperImpl: PreferencesHelperImpl): PreferencesHelper
 }

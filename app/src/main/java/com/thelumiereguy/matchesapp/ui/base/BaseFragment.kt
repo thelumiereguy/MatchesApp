@@ -37,6 +37,17 @@ abstract class BaseFragment : Fragment(), ProfileClickListener {
         } else null
     }
 
+
+    /**
+     * Handles the click if a user's profile is clicked
+     *
+     * Since this can be called from 2 fragments, it has been added to the Base
+     *
+     * @param user The object of the user to be sent
+     *
+     * @param sharedImageView The object of the ImageView which is shared among the Activities
+     *
+     */
     override fun onClick(user: UsersList.User, sharedImageView: ImageView) {
         try {
             val options: ActivityOptionsCompat =

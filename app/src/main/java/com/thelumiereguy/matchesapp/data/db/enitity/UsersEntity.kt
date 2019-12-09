@@ -4,7 +4,6 @@ package com.thelumiereguy.matchesapp.data.db.enitity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.thelumiereguy.matchesapp.domain.enitity.Status
 import com.thelumiereguy.matchesapp.domain.enitity.UsersList
 
 @Entity

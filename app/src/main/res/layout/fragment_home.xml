@@ -14,7 +14,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FEF5F8">
+            android:background="@color/backgroundLight">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/rv_user_list"
@@ -37,10 +37,7 @@
                 android:layout_width="match_parent"
                 android:visibility="invisible"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_margin="@dimen/onboarding_button_margins"
                 android:animateLayoutChanges="true"
                 android:baselineAligned="false"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -60,8 +57,8 @@
                     android:id="@+id/btn_decline"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:contentDescription="Decline"
-                    android:padding="8dp"
+                    android:contentDescription="@string/text_decline"
+                    android:padding="@dimen/login_button_margin_top"
                     android:src="@drawable/profile_remove_photo"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -74,8 +71,8 @@
                     android:id="@+id/btn_favourite"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:contentDescription="Favourite"
-                    android:padding="8dp"
+                    android:contentDescription="@string/text_favourite"
+                    android:padding="@dimen/login_button_margin_top"
                     android:src="@drawable/oval_background_filled_heart"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_accept"
@@ -87,8 +84,8 @@
                     android:id="@+id/btn_accept"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:contentDescription="Accept"
-                    android:padding="8dp"
+                    android:contentDescription="@string/text_accept"
+                    android:padding="@dimen/login_button_margin_top"
                     android:src="@drawable/oval_background_accept"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"

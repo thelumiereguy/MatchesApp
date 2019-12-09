@@ -13,10 +13,16 @@ import javax.inject.Singleton
 @Module
 class SystemServiceModule {
 
+    companion object {
+        const val shared_pref_name = "com.thelumiereguy.matchesapp"
+    }
 
     @Provides
     @ActivityScope
     fun provideSharedPreferences(context: Application): SharedPreferences =
-         context.applicationContext.getSharedPreferences("com.thelumiereguy.matchesapp",Context.MODE_PRIVATE)
+        context.applicationContext.getSharedPreferences(
+            shared_pref_name,
+            Context.MODE_PRIVATE
+        )
 
 }

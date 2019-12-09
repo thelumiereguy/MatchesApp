@@ -35,20 +35,52 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
+
+    /**
+     * Maps the list of
+     * @code UsersList.User to UserEntity
+     *
+     *This list of users are then inserted into the db
+     *
+     * @param usersList The list of users to be inserted
+     */
     override suspend fun saveAllUsers(usersList: UsersList) {
         val usersEntityList: MutableList<UsersEntity> = ArrayList()
         usersEntityList.addAll(usersList.results.map { user -> UsersEntity.mapFrom(user) })
         usersDao.insertUsers(usersEntityList)
     }
 
+
+    /**
+     * Updates a certain property of a specific User.
+     * Calls the Dao's updateUser() function
+     *
+     * Used to update status and isFavourite property
+     *
+     * @param user The specific user whose property has to be changed
+     */
     override suspend fun updateUser(user: UsersList.User) {
         usersDao.updateUser(UsersEntity.mapFrom(user))
     }
 
+
+    /**
+     *
+     * Clears the whole db
+     * Called on Logout
+     *
+     * Calls the Dao's nukeDB() function
+     */
     override suspend fun logoutUser() {
         usersDao.nukeDB()
     }
 
+
+    /**
+     * Get the list of all favourited users ie isFavourite = true
+     *
+     *  Calls the Dao's getAllFavourites() function
+     */
     override suspend fun getFavourites(): UsersList {
         val usersList: List<UsersList.User> = usersDao.getAllFavourites().map {
             it.mapToUser()

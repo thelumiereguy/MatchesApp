@@ -59,6 +59,18 @@ class HomeFragment : BaseFragment() {
         return binding.root
     }
 
+
+
+    private fun initUIComponents() {
+        super.getActivityComponent()?.inject(this)
+        binding.btnAccept.setOnClickListener(listenerImpl)
+        binding.btnFavourite.setOnClickListener(listenerImpl)
+        binding.btnDecline.setOnClickListener(listenerImpl)
+        binding.rvUserList.registerOnPageChangeCallback(listenerImpl)
+
+    }
+
+
     private fun startObserving() {
 
         mainViewModel.getState().observe(viewLifecycleOwner, Observer { observable ->
@@ -80,7 +92,6 @@ class HomeFragment : BaseFragment() {
             Observer {
                 if (it.results.isNotEmpty()) {
                     inflateRecyclerAdapter(it)
-                    binding.btnGroup.visibility = View.VISIBLE
                     updateScrollState()
                 }
             })
@@ -93,15 +104,16 @@ class HomeFragment : BaseFragment() {
                     .append(" ")
                     .append(it.message)
                 Log.w(getClassTag(), errorMessage.toString())
-                Snackbar.make(
-                    binding.root,
-                    errorMessage.toString(),
-                    Snackbar.LENGTH_LONG
-                ).show()
             }
         })
     }
 
+    /**
+     * Called to update the last scrolled position
+     * when coming back to this screen
+     *
+     * The position is temporarily stored in the ViewModel
+     */
     private fun updateScrollState() {
         mainViewModel.currentBrowsedPosition.let { position ->
             homeUserListAdapter.notifyItemChanged(position)
@@ -115,6 +127,7 @@ class HomeFragment : BaseFragment() {
 
     private fun inflateRecyclerAdapter(userList: UsersList) {
         if (!::homeUserListAdapter.isInitialized) {
+            showList()
             homeUserListAdapter = HomeUserListAdapter(userList, this)
             binding.rvUserList.apply {
                 adapter = homeUserListAdapter
@@ -123,18 +136,21 @@ class HomeFragment : BaseFragment() {
         homeUserListAdapter.setUser(userList)
     }
 
-    private fun initUIComponents() {
-        super.getActivityComponent()?.inject(this)
-        binding.btnAccept.setOnClickListener(listenerImpl)
-        binding.btnFavourite.setOnClickListener(listenerImpl)
-        binding.btnDecline.setOnClickListener(listenerImpl)
-        binding.rvUserList.registerOnPageChangeCallback(listenerImpl)
-
-    }
-
 
     inner class ListenerImpl : View.OnClickListener, ViewPager2.OnPageChangeCallback() {
 
+
+        /**
+         *
+         * When a button is clicked, the list in the viewmodel is updated and
+         * the DB as well.
+         *
+         * If Accept/Decline Button is pressed, their visibility
+         * will be toggled as well
+         *
+         * And the current page would be incremented as well
+         *
+         */
         override fun onClick(v: View) {
             var position = binding.rvUserList.currentItem
             val user = mainViewModel.userList.value?.let {
@@ -179,6 +195,7 @@ class HomeFragment : BaseFragment() {
             }
         }
 
+
         private fun jumpToNextUser(position: Int) {
             if (position < mainViewModel.userList.value!!.results.size) {
                 Handler().postDelayed({
@@ -188,7 +205,12 @@ class HomeFragment : BaseFragment() {
             }
         }
 
-
+        /**
+         * When a page is selected, it updates the visibility of the buttons
+         * based on their profile status
+         *
+         * And updates the current position in the ViewModel
+         */
         override fun onPageSelected(position: Int) {
             val user = mainViewModel.userList.value?.let { it.results[position] }
             setButtonVisibility(user)
@@ -202,9 +224,16 @@ class HomeFragment : BaseFragment() {
         binding.buttonGroup.requestLayout()
     }
 
+    /**
+     * Checks the number of items left in the userList
+     *
+     * If its less the 5, the viewmodel fetches more data
+     *
+     * @param position Current page position
+     */
     private fun checkItemsLeft(position: Int) {
         mainViewModel.userList.value?.let {
-            if (it.results.size - position == 5) {
+            if (it.results.size - position < 5) {
                 mainViewModel.getMoreItems()
             }
         }
@@ -222,16 +251,25 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+
+    private fun showList() {
+        binding.rvUserList.visibility = View.VISIBLE
+        binding.btnGroup.visibility = View.VISIBLE
+        binding.llNoInternet.clNoDataMain.visibility = View.GONE
+    }
+
+
     private fun handleError() {
         val user = mainViewModel.userList.value
-        user?.let {
-            if(it.results.isEmpty()){
+        user.let {
+            if (it == null || it.results.isEmpty()) {
                 binding.rvUserList.visibility = View.GONE
                 binding.btnGroup.visibility = View.GONE
                 binding.llNoInternet.clNoDataMain.visibility = View.VISIBLE
             }
         }
     }
+
 
     override fun onResume() {
         super.onResume()

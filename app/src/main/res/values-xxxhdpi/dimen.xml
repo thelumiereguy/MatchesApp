@@ -3,25 +3,18 @@
     <dimen name="pageMargin">30dp</dimen>
     <dimen name="offset">70dp</dimen>
 
-    //GenreData Screen Channels
-    <dimen name="channelDataColumnItemStartEndMargin">16dp</dimen>
-    <dimen name="channelDataColumnItemTopBottomMargin">4dp</dimen>
+    <dimen name="textView_horizontal_margins">32dp</dimen>
+    <dimen name="onboarding_button_corner_radius">20dp</dimen>
+    <dimen name="onboarding_button_margins">16dp</dimen>
 
-    //GenreData Screen Genres
-    <dimen name="genreDataRowItemStartEndMargin">8dp</dimen>
-    <dimen name="genreDataRowColumnItemTopBottomMargin">16dp</dimen>
+    <dimen name="login_button_margin_top">8dp</dimen>
 
+    <dimen name="home_page_corner_radius">4dp</dimen>
 
-    //PlayerContainerHeightChannelDetail
-    <dimen name="channelDetailPlayerHeight">250dp</dimen>
+    <dimen name="home_page_elevation">6dp</dimen>
 
-    <dimen name="genreDataChannelAvatarWidth">100dp</dimen>
-    <dimen name="genreDataChannelAvatarHeight">80dp</dimen>
+    <dimen name="favourites_margin_top">2dp</dimen>
 
-
-    <dimen name="fontSize22dp">18dp</dimen>
-    <dimen name="fontSize18dp">16dp</dimen>
-    <dimen name="fontSize14dp">12dp</dimen>
-    <dimen name="fontSize12dp">10dp</dimen>
+    <dimen name="favouritesAvatarDimens">100dp</dimen>
 
 </resources>

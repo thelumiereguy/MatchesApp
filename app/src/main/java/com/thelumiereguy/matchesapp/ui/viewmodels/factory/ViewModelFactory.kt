@@ -8,12 +8,17 @@ import javax.inject.Provider
 
 @ActivityScope
 class ViewModelFactory
-@Inject constructor(private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>) :
-    ViewModelProvider.Factory {
+@Inject constructor(private val viewmodelMap: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>)
+    : ViewModelProvider.Factory {
 
+    /**
+     * gets the viewmodel object from the Map ,based on its key
+     *
+     * If the key is not found, it'll throw an exception
+     */
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        // get the ViewModel provider based on given class
-        val creator = creators[modelClass] ?: creators.entries.firstOrNull {
+
+        val creator = viewmodelMap[modelClass] ?: viewmodelMap.entries.firstOrNull {
             modelClass.isAssignableFrom(it.key)
         }?.value ?: throw IllegalArgumentException("Unknown model class $modelClass")
         try {

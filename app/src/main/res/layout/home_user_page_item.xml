@@ -7,9 +7,9 @@
         android:layout_height="match_parent"
         android:layout_margin="16dp"
         android:orientation="vertical"
-        app:cardCornerRadius="@dimen/genreDataRowColumnItemTopBottomMargin"
+        app:cardCornerRadius="@dimen/onboarding_button_margins"
         android:animateLayoutChanges="true"
-        app:cardElevation="6dp">
+        app:cardElevation="@dimen/home_page_elevation">
 
 
         <FrameLayout
@@ -38,19 +38,19 @@
             app:cardCornerRadius="8dp"
             style="@style/montserrat_regular_font"
             android:textAlignment="center"
-            android:padding="8dp"
+            android:padding="@dimen/login_button_margin_top"
             android:enabled="false"
-            app:cornerRadius="8dp"
+            app:cornerRadius="@dimen/login_button_margin_top"
             android:textColor="@color/colorWhite"
             android:textAppearance="@style/regular_font_18sp"
             android:layout_gravity="end|top"
-            android:layout_margin="16dp" />
+            android:layout_margin="@dimen/onboarding_button_margins" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
-            android:layout_margin="@dimen/genreDataRowColumnItemTopBottomMargin"
+            android:layout_margin="@dimen/onboarding_button_margins"
             android:orientation="vertical">
 
             <TextView
@@ -58,6 +58,7 @@
                 style="@style/montserrat_regular_font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:autoSizeTextType="uniform"
                 android:textAppearance="@style/regular_font_16sp"
                 android:textColor="@color/colorWhite" />
 
@@ -73,6 +74,7 @@
                     style="@style/montserrat_bold_font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:autoSizeTextType="uniform"
                     android:textAppearance="@style/regular_font_20sp"
                     android:textColor="@color/colorWhite" />
 
@@ -80,7 +82,8 @@
                     style="@style/montserrat_bold_font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="@dimen/home_page_corner_radius"
+                    app:autoSizeTextType="uniform"
                     android:text=","
                     android:textAppearance="@style/regular_font_20sp"
                     android:textColor="@color/colorWhite" />
@@ -91,7 +94,8 @@
                     style="@style/montserrat_bold_font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/genreDataRowColumnItemTopBottomMargin"
+                    android:layout_marginStart="@dimen/home_page_corner_radius"
+                    app:autoSizeTextType="uniform"
                     android:textAppearance="@style/regular_font_20sp"
                     android:textColor="@color/colorWhite" />
 

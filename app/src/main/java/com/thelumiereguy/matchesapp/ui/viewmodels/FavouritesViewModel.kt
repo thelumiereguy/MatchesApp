@@ -37,6 +37,9 @@ class FavouritesViewModel @Inject constructor(
     }
 
 
+    /**
+     * Gets the list of all favourited users
+     */
      fun getFavourites() {
         getFavouritesUseCase.execute {
             onComplete {
@@ -51,6 +54,9 @@ class FavouritesViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Cancels all the running jobs, when viewmodel is cleared
+     */
     override fun onCleared() {
         super.onCleared()
         getFavouritesUseCase.unsubscribe()

@@ -56,6 +56,12 @@ class LoginFragment : BaseFragment() {
 
     inner class ClickListenerImpl : View.OnClickListener {
 
+
+        /**
+         * Sets the flag of loggedIn in Shared Preferences, to start a logged in session
+         *
+         *
+         */
         override fun onClick(v: View?) {
             preferencesHelperImpl.setLoggedIn()
             launcherViewModel.showHome()

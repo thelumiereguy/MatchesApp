@@ -19,12 +19,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:padding="16dp"
+            android:layout_margin="@dimen/onboarding_button_margins"
+            android:padding="@dimen/onboarding_button_margins"
             android:text="@string/onboarding_next"
             android:textAllCaps="true"
             android:textAppearance="@style/montserrat_bold_font"
-            app:cornerRadius="20dp" />
+            app:cornerRadius="@dimen/onboarding_button_corner_radius" />
 
     </FrameLayout>
 

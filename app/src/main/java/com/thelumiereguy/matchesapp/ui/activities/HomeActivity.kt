@@ -45,6 +45,11 @@ class HomeActivity : BaseActivity() {
         binding.bnvHome.selectedItemId = R.id.navigation_home
 
 
+        /**
+         * Called when logout button is pressed
+         *
+         * Clears the preferences and DB
+         */
         binding.ibSettings.setOnClickListener {
             preferencesHelperImpl.logout()
             logoutUseCase.execute {
@@ -64,6 +69,7 @@ class HomeActivity : BaseActivity() {
         startActivity(intent)
         finish()
     }
+
 
 
     inner class BottomNavigationClickCallback :
@@ -106,6 +112,7 @@ class HomeActivity : BaseActivity() {
         }
 
     }
+
 
     override fun onBackPressed() {
         if (doubleBackToExitPressedOnce) {

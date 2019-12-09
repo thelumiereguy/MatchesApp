@@ -17,6 +17,9 @@ class HomeUserListAdapter constructor(
 ) : RecyclerView.Adapter<HomeUserListAdapter.ViewHolder>() {
 
 
+    /**
+     * Called to append the list with new users
+     */
     fun setUser(usersList: UsersList) {
         this.usersList = usersList
         notifyDataSetChanged()
@@ -60,6 +63,13 @@ class HomeUserListAdapter constructor(
         clickListener = null
     }
 
+    /**
+     * Updates the user properties at the specific position
+     *
+     * @param position Index of the user
+     *
+     * @param status The Status to be set - > Accepted or Declined
+     */
     fun setStatus(position: Int, status: String) {
         usersList.results[position].status = status
         notifyItemChanged(position)

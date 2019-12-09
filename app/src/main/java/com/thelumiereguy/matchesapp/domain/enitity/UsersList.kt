@@ -1,12 +1,9 @@
 package com.thelumiereguy.matchesapp.domain.enitity
 
 
-import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
-import java.lang.StringBuilder
 
 data class UsersList constructor(
     @SerializedName("info")

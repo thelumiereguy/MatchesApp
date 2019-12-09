@@ -11,6 +11,7 @@ fun Any.getMethodTag(): String =
     getClassTag() + object : Any() {}.javaClass.enclosingMethod?.name
 
 
+
 fun String.formatDate(): String {
     return try {
         val date = fullDateFormat.parse(this)

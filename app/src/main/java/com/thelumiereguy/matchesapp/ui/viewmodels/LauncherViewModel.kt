@@ -19,6 +19,10 @@ class LauncherViewModel @Inject constructor(
     val error: MutableLiveData<ErrorModel> by lazy { MutableLiveData<ErrorModel>() }
 
 
+    /**
+     * If user is not logged in, Remote Data will be fetched
+     * and cached into DB
+     */
     init {
         if (!preferencesHelperImpl.getLoggedIn()) {
             getAllUsersUseCase.execute {
@@ -34,6 +38,7 @@ class LauncherViewModel @Inject constructor(
     }
 
 
+
     private fun insertAllUsers(userList: UsersList) {
         insertAllUsersUseCase.userList = userList
         insertAllUsersUseCase.execute {
@@ -44,7 +49,6 @@ class LauncherViewModel @Inject constructor(
     }
 
 
-    // Encapsulate access to mutable LiveData through getter
     private val launcherState: MutableLiveData<LauncherState> =
         MutableLiveData(LauncherState.LoadingState)
 
