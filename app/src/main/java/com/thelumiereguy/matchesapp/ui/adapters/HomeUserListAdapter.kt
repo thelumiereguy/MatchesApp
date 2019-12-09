@@ -12,7 +12,7 @@ import com.thelumiereguy.matchesapp.ui.adapters.adapterclicklisteners.CustomOnTo
 import com.thelumiereguy.matchesapp.ui.adapters.adapterclicklisteners.ProfileClickListener
 
 class HomeUserListAdapter constructor(
-    private var usersList: UsersList,
+    var usersList: UsersList,
     private var clickListener: ProfileClickListener?
 ) : RecyclerView.Adapter<HomeUserListAdapter.ViewHolder>() {
 

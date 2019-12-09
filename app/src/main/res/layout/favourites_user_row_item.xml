@@ -20,8 +20,8 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/favouritesAvatarDimens"
                 android:layout_height="@dimen/favouritesAvatarDimens"
-                app:cardCornerRadius="@dimen/home_page_corner_radius"
-                app:cardElevation="@dimen/home_page_elevation">
+                app:cardCornerRadius="@dimen/onboarding_button_margins"
+                app:cardElevation="@dimen/home_page_corner_radius">
 
                 <ImageView
                     android:id="@+id/iv_user_image"

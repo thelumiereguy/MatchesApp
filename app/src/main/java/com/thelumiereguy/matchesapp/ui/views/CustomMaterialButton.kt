@@ -21,8 +21,6 @@ class CustomMaterialButton @JvmOverloads constructor(
 ) : MaterialButton(context, attrs, defStyleAttr) {
 
 
-
-
     init {
         setOnTouchListener(CustomOnTouchListenerImpl(-0.5f))
     }
@@ -32,12 +30,12 @@ class CustomMaterialButton @JvmOverloads constructor(
             Constants.ACCEPTED -> {
                 visibility = View.VISIBLE
                 setBackgroundColor(context.resources.getColor(R.color.card_background_green))
-                text = "Accepted"
+                text = context.getString(R.string.member_accepted)
             }
             Constants.DECLINED -> {
                 visibility = View.VISIBLE
                 setBackgroundColor(context.resources.getColor(R.color.card_background_red))
-                text = "Declined"
+                text = context.getString(R.string.member_declined)
 
             }
             else -> {

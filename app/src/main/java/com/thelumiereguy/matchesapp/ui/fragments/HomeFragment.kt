@@ -66,7 +66,7 @@ class HomeFragment : BaseFragment() {
         binding.btnAccept.setOnClickListener(listenerImpl)
         binding.btnFavourite.setOnClickListener(listenerImpl)
         binding.btnDecline.setOnClickListener(listenerImpl)
-        binding.rvUserList.registerOnPageChangeCallback(listenerImpl)
+        binding.vpUserList.registerOnPageChangeCallback(listenerImpl)
 
     }
 
@@ -117,7 +117,7 @@ class HomeFragment : BaseFragment() {
     private fun updateScrollState() {
         mainViewModel.currentBrowsedPosition.let { position ->
             homeUserListAdapter.notifyItemChanged(position)
-            binding.rvUserList.setCurrentItem(position, false)
+            binding.vpUserList.setCurrentItem(position, false)
             if (position == 0) {
                 val user = mainViewModel.getUserListLiveData().value
                 user?.let { setButtonVisibility(it.results[position]) }
@@ -129,7 +129,7 @@ class HomeFragment : BaseFragment() {
         if (!::homeUserListAdapter.isInitialized) {
             showList()
             homeUserListAdapter = HomeUserListAdapter(userList, this)
-            binding.rvUserList.apply {
+            binding.vpUserList.apply {
                 adapter = homeUserListAdapter
             }
         }
@@ -152,7 +152,7 @@ class HomeFragment : BaseFragment() {
          *
          */
         override fun onClick(v: View) {
-            var position = binding.rvUserList.currentItem
+            var position = binding.vpUserList.currentItem
             val user = mainViewModel.userList.value?.let {
                 it.results[position]
             }
@@ -199,7 +199,7 @@ class HomeFragment : BaseFragment() {
         private fun jumpToNextUser(position: Int) {
             if (position < mainViewModel.userList.value!!.results.size) {
                 Handler().postDelayed({
-                    binding.rvUserList.setCurrentItem(position, true)
+                    binding.vpUserList.setCurrentItem(position, true)
                 }, 500)
 
             }
@@ -253,7 +253,7 @@ class HomeFragment : BaseFragment() {
 
 
     private fun showList() {
-        binding.rvUserList.visibility = View.VISIBLE
+        binding.vpUserList.visibility = View.VISIBLE
         binding.btnGroup.visibility = View.VISIBLE
         binding.llNoInternet.clNoDataMain.visibility = View.GONE
     }
@@ -263,7 +263,7 @@ class HomeFragment : BaseFragment() {
         val user = mainViewModel.userList.value
         user.let {
             if (it == null || it.results.isEmpty()) {
-                binding.rvUserList.visibility = View.GONE
+                binding.vpUserList.visibility = View.GONE
                 binding.btnGroup.visibility = View.GONE
                 binding.llNoInternet.clNoDataMain.visibility = View.VISIBLE
             }

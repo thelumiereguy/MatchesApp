@@ -38,6 +38,9 @@ class MainViewModel @Inject constructor(
     /**
      * Updates the properties of a user in the list
      * and also in the DB
+     *
+     * @param index Index to be updated
+     * @param status New Status to be set - Accepted or Declined
      */
     fun setStatus(index: Int, status: String) {
         userList.value?.let {

@@ -64,7 +64,7 @@ class OnBoardingFragment : BaseFragment() {
                     launcherViewModel.showLogin()
                 }
                 else -> {
-                    binding.btnNext.text = "Start"
+                    binding.btnNext.text = requireActivity().resources.getString(R.string.onboarding_start)
                     binding.vpOnboarding.currentItem = 1
                 }
             }
