@@ -36,7 +36,6 @@ class CustomMaterialButton @JvmOverloads constructor(
                 visibility = View.VISIBLE
                 setBackgroundColor(context.resources.getColor(R.color.card_background_red))
                 text = context.getString(R.string.member_declined)
-
             }
             else -> {
                 visibility = View.GONE

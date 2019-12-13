@@ -155,6 +155,7 @@ class MainViewModel @Inject constructor(
         getAllUsersUseCase.isInternetConnected = true
         getAllUsersUseCase.execute {
             onComplete {
+                userList.postValue(it)
                 insertAllUsers(it)
             }
             onError { throwable ->
